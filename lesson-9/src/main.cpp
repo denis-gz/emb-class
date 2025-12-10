@@ -7,11 +7,11 @@
 Adafruit_NeoPixel strip(NUM_PIXELS, RGB_BUILTIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  Serial.begin(115200);
-  delay(500);
-  Serial.println("Starting");
-  strip.begin();
-  strip.show(); // initialize strip to 'off'
+    Serial.begin(115200);
+    delay(500);
+    Serial.println("Starting");
+    strip.begin();
+    strip.show(); // initialize strip to 'off'
 }
 
 void loop() {
