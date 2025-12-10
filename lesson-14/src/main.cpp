@@ -12,7 +12,7 @@ enum class LED_Mode {
 };
 
 struct LED_Info {
-    int pin;        // GPIO pin
+    const int pin;  // GPIO pin
     bool state;     // Logical state (on/off)
 };
 
@@ -22,7 +22,7 @@ int ID_BLUE = 1;
 int ID_COUNT = ID_BLUE + 1;
 
 // Initialize initial state
-LED_Info g_led_state[] = {
+LED_Info g_led[] = {
     { PIN_RED, false },
     { PIN_BLUE, false },
 };
@@ -113,8 +113,6 @@ void Cycle_LED_Mode() {
             g_led_mode = LED_Mode::None;
             g_period = 0;
             g_mode_fsm = 0;
-            g_led_state[ID_RED].state = false;
-            g_led_state[ID_BLUE].state = false;
             break;
     }
     Serial.printf("LED mode --> %s\n", LED_Mode_To_String(g_led_mode));
@@ -128,67 +126,70 @@ bool Process_State() {
 
     switch (g_led_mode) {
         case LED_Mode::None:
+            g_led[ID_RED].state = false;
+            g_led[ID_BLUE].state = false;
+            g_period = UINT32_MAX;  // Don't need to handle state anymore
             break;
         case LED_Mode::Red:
             // Switch off the blue LED, switch the red LED to the opposite
-            g_led_state[ID_RED].state ^= true;
-            g_led_state[ID_BLUE].state = false;
+            g_led[ID_RED].state ^= true;
+            g_led[ID_BLUE].state = false;
             break;
         case LED_Mode::Blue:
             // Switch off the red LED, switch the blue LED to the opposite
-            g_led_state[ID_RED].state = false;
-            g_led_state[ID_BLUE].state ^= true;
+            g_led[ID_RED].state = false;
+            g_led[ID_BLUE].state ^= true;
             break;
         case LED_Mode::Police: {
             // In Police mode, we really need to use the Finite State Machine
             switch (g_mode_fsm++) {
                 case 0:
-                    g_led_state[ID_RED].state = true;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = true;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 1:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 2:
-                    g_led_state[ID_RED].state = true;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = true;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 3:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 4:
-                    g_led_state[ID_RED].state = true;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = true;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 5:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 6:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = true;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = true;
                     break;
                 case 7:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 8:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = true;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = true;
                     break;
                 case 9:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     break;
                 case 10:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = true;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = true;
                     break;
                 case 11:
-                    g_led_state[ID_RED].state = false;
-                    g_led_state[ID_BLUE].state = false;
+                    g_led[ID_RED].state = false;
+                    g_led[ID_BLUE].state = false;
                     g_mode_fsm = 0;
                     break;
             }
@@ -201,7 +202,7 @@ bool Process_State() {
 
 void Process_Output_Pins() {
     for (size_t i = 0; i < ID_COUNT; ++i) {
-        digitalWrite(g_led_state[i].pin, g_led_state[i].state ? HIGH : LOW);
+        digitalWrite(g_led[i].pin, g_led[i].state ? HIGH : LOW);
     }
 }
 
