@@ -1,8 +1,19 @@
 #include <Arduino.h>
 
+// LED pins use pull-down logic (active high)
 #define PIN_RED     10
 #define PIN_BLUE    7
+
+// Button pin uses pull-up logic (active low)
 #define PIN_BUTTON  14
+
+// Minimal time unit (in loop cycles)
+#define TIME_UNIT 1000
+
+const uint32_t SLOW_BLINK_PERIOD = 1000 * TIME_UNIT;
+const uint32_t FAST_BLINK_PERIOD = 100 * TIME_UNIT;
+
+#define countof(ARRAY) (sizeof(ARRAY) / sizeof(ARRAY[0]))
 
 enum class LED_Mode {
     None   = 0,
@@ -11,30 +22,49 @@ enum class LED_Mode {
     Police = 3,
 };
 
-struct LED_Info {
+struct PIN_State {
     const int pin;  // GPIO pin
     bool state;     // Logical state (on/off)
 };
 
 // LED indices in the g_led_state array
-int ID_RED  = 0;
-int ID_BLUE = 1;
-int ID_COUNT = ID_BLUE + 1;
+const int ID_RED  = 0;
+const int ID_BLUE = 1;
 
 // Initialize initial state
-LED_Info g_led[] = {
-    { PIN_RED, false },
-    { PIN_BLUE, false },
+PIN_State g_leds[] = {
+    { PIN_RED,  0 },
+    { PIN_BLUE, 0 },
 };
+
+struct LED_Unit {
+    const bool red;
+    const bool blue;
+};
+
+LED_Unit g_police_pattern[] {
+    { 1, 0 },
+    { 0, 0 },
+    { 1, 0 },
+    { 0, 0 },
+    { 1, 0 },
+    { 0, 0 },
+    { 0, 1 },
+    { 0, 0 },
+    { 0, 1 },
+    { 0, 0 },
+    { 0, 1 },
+    { 0, 0 },
+};
+
+// Police mode pattern index
+uint8_t g_police_index = 0;
 
 bool g_last_button_state = false;
 
 // Holds currently chosen LED mode
 LED_Mode g_led_mode = {};
 uint32_t g_loop_counter = 0;
-
-// Finite state machine used to switch LED states (really needed only in Police mode) 
-uint32_t g_mode_fsm = 0;
 
 // Period for state machine switches
 uint32_t g_period = 0;
@@ -50,7 +80,7 @@ void Process_Output_Pins();
 bool Process_State();
 
 // Switches LED blinking modes in cycle
-void Cycle_LED_Mode();
+void Cycle_LED_Modes();
 
 // Used for logging
 const char* LED_Mode_To_String(LED_Mode mode);
@@ -63,7 +93,7 @@ void setup() {
     pinMode(PIN_BUTTON, INPUT);
 
     Process_Output_Pins();
-    Cycle_LED_Mode();
+    Cycle_LED_Modes();
 }
 
 void loop() {
@@ -75,44 +105,41 @@ void loop() {
 }
 
 void Process_Input_Pins() {
-    // Read button state every 1000 loop cycles (still fast enough)
-    if (g_loop_counter % (1 * 1000))
+    // Read button state every time unit
+    if (g_loop_counter % TIME_UNIT)
         return;
     int button_state = digitalRead(PIN_BUTTON);
     if (g_last_button_state != button_state) {
         g_last_button_state = button_state;
         // Switch LED mode when button is depressed
         if (button_state == LOW) {
-            Cycle_LED_Mode();
+            Cycle_LED_Modes();
         }
     }
 }
 
-void Cycle_LED_Mode() {
+void Cycle_LED_Modes() {
     switch (g_led_mode) {
         case LED_Mode::None:
             // Next mode is Red
             g_led_mode = LED_Mode::Red;
-            g_period = 1000 * 1000;
-            g_mode_fsm = 0;
+            g_period = SLOW_BLINK_PERIOD;
             break;
         case LED_Mode::Red:
             // Next mode is Blue
             g_led_mode = LED_Mode::Blue;
-            g_period = 1000 * 1000;
-            g_mode_fsm = 0;
+            g_period = SLOW_BLINK_PERIOD;
             break;
         case LED_Mode::Blue:
             // Next mode is Police
             g_led_mode = LED_Mode::Police;
-            g_period = 100 * 1000;
-            g_mode_fsm = 0;
+            g_period = FAST_BLINK_PERIOD;
+            g_police_index = 0;
             break;
         case LED_Mode::Police:
             // Next mode is None (off)
             g_led_mode = LED_Mode::None;
             g_period = 0;
-            g_mode_fsm = 0;
             break;
     }
     Serial.printf("LED mode --> %s\n", LED_Mode_To_String(g_led_mode));
@@ -126,74 +153,26 @@ bool Process_State() {
 
     switch (g_led_mode) {
         case LED_Mode::None:
-            g_led[ID_RED].state = false;
-            g_led[ID_BLUE].state = false;
+            g_leds[ID_RED].state = 0;
+            g_leds[ID_BLUE].state = 0;
             g_period = UINT32_MAX;  // Don't need to handle state anymore
             break;
         case LED_Mode::Red:
             // Switch off the blue LED, switch the red LED to the opposite
-            g_led[ID_RED].state ^= true;
-            g_led[ID_BLUE].state = false;
+            g_leds[ID_RED].state ^= 1;
+            g_leds[ID_BLUE].state = 0;
             break;
         case LED_Mode::Blue:
             // Switch off the red LED, switch the blue LED to the opposite
-            g_led[ID_RED].state = false;
-            g_led[ID_BLUE].state ^= true;
+            g_leds[ID_RED].state = 0;
+            g_leds[ID_BLUE].state ^= 1;
             break;
         case LED_Mode::Police: {
-            // In Police mode, we really need to use the Finite State Machine
-            switch (g_mode_fsm++) {
-                case 0:
-                    g_led[ID_RED].state = true;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 1:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 2:
-                    g_led[ID_RED].state = true;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 3:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 4:
-                    g_led[ID_RED].state = true;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 5:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 6:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = true;
-                    break;
-                case 7:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 8:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = true;
-                    break;
-                case 9:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    break;
-                case 10:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = true;
-                    break;
-                case 11:
-                    g_led[ID_RED].state = false;
-                    g_led[ID_BLUE].state = false;
-                    g_mode_fsm = 0;
-                    break;
-            }
-            Serial.printf("FSM state: %d\n", g_mode_fsm);
+            auto unit = g_police_pattern[g_police_index++];
+            g_leds[ID_RED].state = unit.red;
+            g_leds[ID_BLUE].state = unit.blue;
+            if (g_police_index >= countof(g_police_pattern))
+                g_police_index = 0;
             break;
         }
     }
@@ -201,8 +180,8 @@ bool Process_State() {
 }
 
 void Process_Output_Pins() {
-    for (size_t i = 0; i < ID_COUNT; ++i) {
-        digitalWrite(g_led[i].pin, g_led[i].state ? HIGH : LOW);
+    for (size_t i = 0; i < countof(g_leds); ++i) {
+        digitalWrite(g_leds[i].pin, g_leds[i].state ? HIGH : LOW);
     }
 }
 
