@@ -5,7 +5,8 @@
 #define PIN_BLUE    7
 
 // Button pin uses pull-up logic (active low)
-#define PIN_BUTTON  14
+#define PIN_BUTTON_1    14
+#define PIN_BUTTON_2    0
 
 // Minimal time unit (in loop cycles)
 #define TIME_UNIT 1000
@@ -15,12 +16,18 @@ const uint32_t FAST_BLINK_PERIOD = 100 * TIME_UNIT;
 
 #define countof(ARRAY) (sizeof(ARRAY) / sizeof(ARRAY[0]))
 
-enum class LED_Mode {
+enum LED_Mode {
     None   = 0,
     Red    = 1,
     Blue   = 2,
     Police = 3,
+
+    // Always set Count to the last enum value + 1
+    Count  = 4,
 };
+
+#define CYCLE_FORWARD   false
+#define CYCLE_BACKWARD  true
 
 struct PIN_State {
     const int pin;  // GPIO pin
@@ -60,7 +67,12 @@ LED_Unit g_police_pattern[] {
 // Police mode pattern index
 uint8_t g_police_index = 0;
 
-bool g_last_button_state = false;
+// Holds last read state of physical buttons
+bool g_button_state[2] = {};
+
+// Button indices in the g_button_state array
+const int ID_BUTTON_1 = 0;
+const int ID_BUTTON_2 = 1;
 
 // Holds currently chosen LED mode
 LED_Mode g_led_mode = {};
@@ -80,7 +92,7 @@ void Process_Output_Pins();
 bool Process_State();
 
 // Switches LED blinking modes in cycle
-void Cycle_LED_Modes();
+void Cycle_LED_Modes(bool backward);
 
 // Used for logging
 const char* LED_Mode_To_String(LED_Mode mode);
@@ -90,10 +102,11 @@ void setup() {
 
     pinMode(PIN_RED, OUTPUT);
     pinMode(PIN_BLUE, OUTPUT);
-    pinMode(PIN_BUTTON, INPUT);
+    pinMode(PIN_BUTTON_1, INPUT);
+    pinMode(PIN_BUTTON_2, INPUT);
 
     Process_Output_Pins();
-    Cycle_LED_Modes();
+    Cycle_LED_Modes(CYCLE_FORWARD);
 }
 
 void loop() {
@@ -108,38 +121,46 @@ void Process_Input_Pins() {
     // Read button state every time unit
     if (g_loop_counter % TIME_UNIT)
         return;
-    int button_state = digitalRead(PIN_BUTTON);
-    if (g_last_button_state != button_state) {
-        g_last_button_state = button_state;
-        // Switch LED mode when button is depressed
-        if (button_state == LOW) {
-            Cycle_LED_Modes();
+
+    int button_1 = digitalRead(PIN_BUTTON_1);
+    if (g_button_state[ID_BUTTON_1] != button_1) {
+        g_button_state[ID_BUTTON_1] = button_1;
+        // Switch LED mode forward when button 1 is depressed
+        if (button_1 == LOW) {
+            Cycle_LED_Modes(CYCLE_FORWARD);
+        }
+    }
+
+    int button_2 = digitalRead(PIN_BUTTON_2);
+    if (g_button_state[ID_BUTTON_2] != button_2) {
+        g_button_state[ID_BUTTON_2] = button_2;
+        // Switch LED mode backward when button 2 is depressed
+        if (button_2 == LOW) {
+            Cycle_LED_Modes(CYCLE_BACKWARD);
         }
     }
 }
 
-void Cycle_LED_Modes() {
+void Cycle_LED_Modes(bool backward) {
+    int new_mode = backward ? g_led_mode - 1 : g_led_mode + 1;
+    if (new_mode >= LED_Mode::Count)
+        new_mode = 0;
+    if (new_mode < 0)
+        new_mode = LED_Mode::Count - 1;
+
+    g_led_mode = (LED_Mode) new_mode;
+
     switch (g_led_mode) {
         case LED_Mode::None:
-            // Next mode is Red
-            g_led_mode = LED_Mode::Red;
-            g_period = SLOW_BLINK_PERIOD;
+            g_period = 0;
             break;
         case LED_Mode::Red:
-            // Next mode is Blue
-            g_led_mode = LED_Mode::Blue;
+        case LED_Mode::Blue:
             g_period = SLOW_BLINK_PERIOD;
             break;
-        case LED_Mode::Blue:
-            // Next mode is Police
-            g_led_mode = LED_Mode::Police;
+        case LED_Mode::Police:
             g_period = FAST_BLINK_PERIOD;
             g_police_index = 0;
-            break;
-        case LED_Mode::Police:
-            // Next mode is None (off)
-            g_led_mode = LED_Mode::None;
-            g_period = 0;
             break;
     }
     Serial.printf("LED mode --> %s\n", LED_Mode_To_String(g_led_mode));
