@@ -1,0 +1,5 @@
+/**/build/
+/**/managed_components/
+/**/.qtcreator/
+/**/CMakeLists.txt.user
+/get-started
