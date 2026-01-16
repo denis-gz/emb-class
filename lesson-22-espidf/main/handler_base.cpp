@@ -64,6 +64,11 @@ esp_err_t HandlerBase::Init(gpio_int_type_t int_type)
     ESP_ERROR_CHECK(ret = gpio_new_pin_glitch_filter(&gl_conf, &gl_handle));
     ESP_ERROR_CHECK(ret = gpio_glitch_filter_enable(gl_handle));
 
+    int64_t now_time = esp_timer_get_time();
+    m_depress_time = now_time;
+    m_release_time = now_time;
+    m_level = 1;
+
     return ret;
 }
 
@@ -115,8 +120,8 @@ bool HandlerBase::LogSamples()
                 std::get<1>(s),           // m_sample_time
                 std::get<4>(s),           // m_level
                 get<1>(s) - get<1>(r),    // time since last sample
-                std::get<2>(s),           // m_depressed_time
-                std::get<3>(s),           // m_released_time
+                std::get<2>(s),           // m_depress_time
+                std::get<3>(s),           // m_release_time
                 std::get<5>(s)            // m_counter
             );
         }
