@@ -1,0 +1,30 @@
+menu "Project Configuration"
+
+    orsource "Kconfig.env_caps"
+
+    config PIN_DEVKIT_BUTTON
+        int "Pin number of Devkit's on-board button"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_USER_BUTTON
+        int "Pin number of user's attached button"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 4
+
+    config PIN_LED_RED
+        int "Pin number of LED_1 (pull-up, active low)"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 6
+
+    config PIN_LED_YELLOW
+        int "Pin number of LED_1 (pull-up, active low)"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 8
+
+    config PIN_LED_GREEN
+        int "Pin number of LED_1 (pull-up, active low)"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 12
+
+endmenu
