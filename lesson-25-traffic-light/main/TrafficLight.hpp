@@ -39,7 +39,6 @@ private:
     Mode m_mode = Mode::Off;
     LED  m_leds[3];
 
-    bool tick_and_check_timeout();
     void set_lights(bool red, bool yellow, bool green);
 };
 

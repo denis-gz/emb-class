@@ -51,52 +51,39 @@ void TrafficLight::set_mode(Mode mode)
 
 void TrafficLight::process_state()
 {
+    if (m_mode == Mode::Off)
+        return;
+    if (--m_ticks > 0)
+        return;
+
     switch (m_mode) {
-        case Mode::Off:
-            break;
         case Mode::Inactive:
-            if (tick_and_check_timeout())
-                set_mode(Mode::YellowBlink);
+            set_mode(Mode::YellowBlink);
             break;
         case Mode::Red:
-            if (tick_and_check_timeout())
-                set_mode(Mode::RedYellow);
+            set_mode(Mode::RedYellow);
             break;
         case Mode::RedYellow:
-            if (tick_and_check_timeout())
-                set_mode(Mode::Green);
+            set_mode(Mode::Green);
             break;
         case Mode::Green:
-            if (tick_and_check_timeout()) {
-                m_blink_counter = 6;
-                set_mode(Mode::GreenBlink);
-            }
+            m_blink_counter = 6;
+            set_mode(Mode::GreenBlink);
             break;
         case Mode::GreenBlink:
-            if (tick_and_check_timeout()) {
-                if (--m_blink_counter) {
-                    set_mode(Mode::GreenBlink);
-                }
-                else {
-                    set_mode(Mode::Yellow);
-                }
-            }
+            if (--m_blink_counter)
+                set_mode(Mode::GreenBlink);
+            else
+                set_mode(Mode::Yellow);
             break;
         case Mode::Yellow:
-            if (tick_and_check_timeout())
-                set_mode(Mode::Red);
+            set_mode(Mode::Red);
+            break;
+        default:
+            set_mode(Mode::Off);
             break;
     }
 }
-
-bool TrafficLight::tick_and_check_timeout()
-{
-    if (m_ticks)
-        --m_ticks;
-
-    return m_ticks <= 0;
-}
-
 
 void TrafficLight::set_lights(bool red, bool yellow, bool green)
 {
