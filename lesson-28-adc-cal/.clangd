@@ -1,0 +1,4 @@
+CompileFlags:
+  Remove: [-m*, -f*]
+  Add: [-Wno-switch, -Wno-c99-designator]
+  CompilationDatabase: C:\Work\Personal\emb-class\lesson-28-adc-cal\build-esp

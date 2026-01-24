@@ -1,0 +1,575 @@
+[0/1] C:\WINDOWS\system32\cmd.exe /C "cd /D C:\Esp32\v5.5.2\esp-idf\components\esptool_py && C:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=C:/Esp32/v5.5.2/esp-idf -D SERIAL_TOOL=C:/Espressif/tools/python/v5.5.2/venv/Scripts/python.exe;-m;esp_idf_monitor -D SERIAL_TOOL_ARGS=--toolchain-prefix;xtensa-esp32s3-elf-;;--target;esp32s3;;--revision;0;;C:/Work/Personal/emb-class/lesson-28-adc-cal/build/lesson-28-adc-cal.elf -D WORKING_DIRECTORY=C:/Work/Personal/emb-class/lesson-28-adc-cal/build -P run_serial_tool.cmake"
+I (8964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x40377456
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1700
+load:0x403c8700,len:0xec0
+load:0x403cb700,len:0x31c0
+entry 0x403c894c
+I (24) boot: ESP-IDF v5.5.2 2nd stage bootloader
+I (24) boot: compile time Jan 24 2026 09:45:17
+I (25) boot: Multicore bootloader
+I (25) boot: chip revision: v0.2
+I (27) boot: efuse block revision: v1.3
+I (31) qio_mode: Enabling QIO for flash chip MXIC
+I (36) boot.esp32s3: Boot SPI Speed : 80MHz
+I (39) boot.esp32s3: SPI Mode       : QIO
+I (43) boot.esp32s3: SPI Flash Size : 16MB
+I (47) boot: Enabling RNG early entropy source...
+I (51) boot: Partition Table:
+I (54) boot: ## Label            Usage          Type ST Offset   Length
+I (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (73) boot:  2 factory          factory app      00 00 00010000 00100000
+I (80) boot: End of partition table
+I (83) esp_image: segment 0: paddr=00010020 vaddr=3c010020 size=07c94h ( 31892) map
+I (95) esp_image: segment 1: paddr=00017cbc vaddr=3fc91300 size=03084h ( 12420) load
+I (100) esp_image: segment 2: paddr=0001ad48 vaddr=40374000 size=052d0h ( 21200) load
+I (110) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=0f0ech ( 61676) map
+I (122) esp_image: segment 4: paddr=0002f114 vaddr=403792d0 size=07fcch ( 32716) load
+I (129) esp_image: segment 5: paddr=000370e8 vaddr=50000000 size=00020h (    32) load
+I (135) boot: Loaded app from partition at offset 0x10000
+I (135) boot: Disabling RNG early entropy source...
+I (149) cpu_start: Multicore app
+I (158) cpu_start: GPIO 44 and 43 are used as console UART I/O pins
+I (158) cpu_start: Pro cpu start user code
+I (158) cpu_start: cpu freq: 240000000 Hz
+I (160) app_init: Application information:
+I (164) app_init: Project name:     lesson-28-adc-cal
+I (169) app_init: App version:      4497bea-dirty
+I (173) app_init: Compile time:     Jan 24 2026 16:34:44
+I (178) app_init: ELF file SHA256:  2065cce12...
+I (182) app_init: ESP-IDF:          v5.5.2
+I (186) efuse_init: Min chip rev:     v0.0
+I (190) efuse_init: Max chip rev:     v0.99 
+I (194) efuse_init: Chip rev:         v0.2
+I (198) heap_init: Initializing. RAM available for dynamic allocation:
+I (204) heap_init: At 3FC94C38 len 00054AD8 (338 KiB): RAM
+I (209) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM
+I (214) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM
+I (220) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM
+I (225) spi_flash: detected chip: mxic
+I (228) spi_flash: flash io: qio
+I (232) sleep_gpio: Configure to isolate all GPIO pins in sleep state
+I (238) sleep_gpio: Enable automatic switching of GPIO sleep configuration
+I (244) main_task: Started on CPU0
+I (254) main_task: Calling app_main()
+I (254) lesson-28-adc-cal: Working with ADC_UNIT_1, ADC_CHANNEL_3
+I (254) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:     -nan | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (1964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (2964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (3964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (4064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (4164) lesson-28-adc-cal: Raw:   75 | Avg:    7.5 | Sig:  23.7171 | Exp:    2 mV | Act:    4 mV | Err: -50.0%
+I (4264) lesson-28-adc-cal: Raw:  183 | Avg:   25.8 | Sig:  60.0533 | Exp:    7 mV | Act:   10 mV | Err: -30.0%
+I (4364) lesson-28-adc-cal: Raw:  245 | Avg:   50.3 | Sig:  90.5772 | Exp:   15 mV | Act:   18 mV | Err: -16.7%
+I (4464) lesson-28-adc-cal: Raw:  278 | Avg:   78.1 | Sig: 113.2484 | Exp:   23 mV | Act:   27 mV | Err: -14.8%
+I (4564) lesson-28-adc-cal: Raw:  285 | Avg:  106.6 | Sig: 126.4966 | Exp:   32 mV | Act:   36 mV | Err: -11.1%
+I (4664) lesson-28-adc-cal: Raw:  277 | Avg:  134.3 | Sig: 130.8146 | Exp:   40 mV | Act:   45 mV | Err: -11.1%
+I (4764) lesson-28-adc-cal: Raw:  279 | Avg:  162.2 | Sig: 128.7243 | Exp:   49 mV | Act:   54 mV | Err: -9.3%
+I (4864) lesson-28-adc-cal: Raw:  281 | Avg:  190.3 | Sig: 119.7396 | Exp:   58 mV | Act:   63 mV | Err: -7.9%
+I (4964) lesson-28-adc-cal: Raw:  287 | Avg:  219.0 | Sig: 102.1644 | Exp:   66 mV | Act:   72 mV | Err: -8.3%
+I (5064) lesson-28-adc-cal: Raw:  277 | Avg:  246.7 | Sig:  68.0426 | Exp:   75 mV | Act:   81 mV | Err: -7.4%
+I (5164) lesson-28-adc-cal: Raw:  288 | Avg:  268.0 | Sig:  32.2421 | Exp:   81 mV | Act:   88 mV | Err: -8.0%
+I (5264) lesson-28-adc-cal: Raw:  283 | Avg:  278.0 | Sig:  12.2746 | Exp:   84 mV | Act:   91 mV | Err: -7.7%
+I (5364) lesson-28-adc-cal: Raw:  301 | Avg:  283.6 | Sig:   7.3212 | Exp:   86 mV | Act:   93 mV | Err: -7.5%
+I (5464) lesson-28-adc-cal: Raw:  331 | Avg:  288.9 | Sig:  16.3873 | Exp:   88 mV | Act:   95 mV | Err: -7.4%
+I (5564) lesson-28-adc-cal: Raw:  405 | Avg:  300.9 | Sig:  40.0568 | Exp:   91 mV | Act:   99 mV | Err: -8.1%
+I (5664) lesson-28-adc-cal: Raw:  505 | Avg:  323.7 | Sig:  74.7798 | Exp:   98 mV | Act:  106 mV | Err: -7.5%
+I (5764) lesson-28-adc-cal: Raw:  605 | Avg:  356.3 | Sig: 113.9357 | Exp:  108 mV | Act:  116 mV | Err: -6.9%
+I (5864) lesson-28-adc-cal: Raw:  701 | Avg:  398.3 | Sig: 153.6013 | Exp:  121 mV | Act:  130 mV | Err: -6.9%
+I (5964) lesson-28-adc-cal: Raw:  767 | Avg:  446.3 | Sig: 186.4439 | Exp:  136 mV | Act:  146 mV | Err: -6.8%
+I (6064) lesson-28-adc-cal: Raw:  744 | Avg:  493.0 | Sig: 197.4859 | Exp:  150 mV | Act:  161 mV | Err: -6.8%
+I (6164) lesson-28-adc-cal: Raw:  798 | Avg:  544.0 | Sig: 204.3950 | Exp:  166 mV | Act:  177 mV | Err: -6.2%
+I (6264) lesson-28-adc-cal: Raw:  791 | Avg:  594.8 | Sig: 195.2428 | Exp:  181 mV | Act:  194 mV | Err: -6.7%
+I (6364) lesson-28-adc-cal: Raw:  796 | Avg:  644.3 | Sig: 174.0811 | Exp:  196 mV | Act:  210 mV | Err: -6.7%
+I (6464) lesson-28-adc-cal: Raw:  795 | Avg:  690.7 | Sig: 139.7466 | Exp:  210 mV | Act:  226 mV | Err: -7.1%
+I (6564) lesson-28-adc-cal: Raw:  797 | Avg:  729.9 | Sig: 100.0394 | Exp:  222 mV | Act:  238 mV | Err: -6.7%
+I (6664) lesson-28-adc-cal: Raw:  795 | Avg:  758.9 | Sig:  62.6444 | Exp:  231 mV | Act:  248 mV | Err: -6.9%
+I (6764) lesson-28-adc-cal: Raw:  797 | Avg:  778.1 | Sig:  32.3160 | Exp:  237 mV | Act:  254 mV | Err: -6.7%
+I (6864) lesson-28-adc-cal: Raw:  795 | Avg:  787.5 | Sig:  17.8154 | Exp:  240 mV | Act:  257 mV | Err: -6.6%
+I (6964) lesson-28-adc-cal: Raw:  795 | Avg:  790.3 | Sig:  16.3778 | Exp:  241 mV | Act:  258 mV | Err: -6.6%
+I (7064) lesson-28-adc-cal: Raw:  799 | Avg:  795.8 | Sig:   2.2010 | Exp:  242 mV | Act:  260 mV | Err: -6.9%
+I (7164) lesson-28-adc-cal: Raw:  793 | Avg:  795.3 | Sig:   2.2136 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7264) lesson-28-adc-cal: Raw:  790 | Avg:  795.2 | Sig:   2.4404 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7364) lesson-28-adc-cal: Raw:  795 | Avg:  795.1 | Sig:   2.4244 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7464) lesson-28-adc-cal: Raw:  791 | Avg:  794.7 | Sig:   2.7508 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7564) lesson-28-adc-cal: Raw:  793 | Avg:  794.3 | Sig:   2.6687 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7664) lesson-28-adc-cal: Raw:  793 | Avg:  794.1 | Sig:   2.6854 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7764) lesson-28-adc-cal: Raw:  793 | Avg:  793.7 | Sig:   2.4967 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7864) lesson-28-adc-cal: Raw:  793 | Avg:  793.5 | Sig:   2.4608 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (7964) lesson-28-adc-cal: Raw:  793 | Avg:  793.3 | Sig:   2.4060 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8064) lesson-28-adc-cal: Raw:  795 | Avg:  792.9 | Sig:   1.5239 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8164) lesson-28-adc-cal: Raw:  795 | Avg:  793.1 | Sig:   1.6633 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8264) lesson-28-adc-cal: Raw:  797 | Avg:  793.8 | Sig:   1.6865 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8364) lesson-28-adc-cal: Raw:  793 | Avg:  793.6 | Sig:   1.6465 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8464) lesson-28-adc-cal: Raw:  793 | Avg:  793.8 | Sig:   1.3984 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8564) lesson-28-adc-cal: Raw:  791 | Avg:  793.6 | Sig:   1.6465 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8664) lesson-28-adc-cal: Raw:  795 | Avg:  793.8 | Sig:   1.6865 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8764) lesson-28-adc-cal: Raw:  807 | Avg:  795.2 | Sig:   4.4672 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8864) lesson-28-adc-cal: Raw:  793 | Avg:  795.2 | Sig:   4.4672 | Exp:  242 mV | Act:  259 mV | Err: -6.6%
+I (8964) lesson-28-adc-cal: Raw:  811 | Avg:  797.0 | Sig:   6.5997 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9064) lesson-28-adc-cal: Raw:  798 | Avg:  797.3 | Sig:   6.5668 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9164) lesson-28-adc-cal: Raw:  798 | Avg:  797.6 | Sig:   6.5184 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9264) lesson-28-adc-cal: Raw:  792 | Avg:  797.1 | Sig:   6.7569 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9364) lesson-28-adc-cal: Raw:  795 | Avg:  797.3 | Sig:   6.6508 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9464) lesson-28-adc-cal: Raw:  793 | Avg:  797.3 | Sig:   6.6508 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9564) lesson-28-adc-cal: Raw:  791 | Avg:  797.3 | Sig:   6.6508 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9664) lesson-28-adc-cal: Raw:  795 | Avg:  797.3 | Sig:   6.6508 | Exp:  243 mV | Act:  260 mV | Err: -6.5%
+I (9764) lesson-28-adc-cal: Raw:  829 | Avg:  799.5 | Sig:  11.8345 | Exp:  244 mV | Act:  261 mV | Err: -6.5%
+I (9864) lesson-28-adc-cal: Raw:  915 | Avg:  811.7 | Sig:  38.1082 | Exp:  247 mV | Act:  265 mV | Err: -6.8%
+I (9964) lesson-28-adc-cal: Raw: 1032 | Avg:  833.8 | Sig:  79.3849 | Exp:  254 mV | Act:  272 mV | Err: -6.6%
+I (10064) lesson-28-adc-cal: Raw: 1143 | Avg:  868.3 | Sig: 124.3374 | Exp:  265 mV | Act:  283 mV | Err: -6.4%
+I (10164) lesson-28-adc-cal: Raw: 1275 | Avg:  916.0 | Sig: 175.3878 | Exp:  279 mV | Act:  298 mV | Err: -6.4%
+I (10264) lesson-28-adc-cal: Raw: 1355 | Avg:  972.3 | Sig: 216.6657 | Exp:  296 mV | Act:  316 mV | Err: -6.3%
+I (10364) lesson-28-adc-cal: Raw: 1383 | Avg: 1031.1 | Sig: 241.5600 | Exp:  314 mV | Act:  334 mV | Err: -6.0%
+I (10464) lesson-28-adc-cal: Raw: 1387 | Avg: 1090.5 | Sig: 249.4105 | Exp:  332 mV | Act:  354 mV | Err: -6.2%
+I (10564) lesson-28-adc-cal: Raw: 1385 | Avg: 1149.9 | Sig: 240.7389 | Exp:  351 mV | Act:  373 mV | Err: -5.9%
+I (10664) lesson-28-adc-cal: Raw: 1383 | Avg: 1208.7 | Sig: 214.8395 | Exp:  368 mV | Act:  392 mV | Err: -6.1%
+I (10764) lesson-28-adc-cal: Raw: 1383 | Avg: 1264.1 | Sig: 173.5002 | Exp:  385 mV | Act:  411 mV | Err: -6.3%
+I (10864) lesson-28-adc-cal: Raw: 1383 | Avg: 1310.9 | Sig: 125.2930 | Exp:  400 mV | Act:  426 mV | Err: -6.1%
+I (10964) lesson-28-adc-cal: Raw: 1381 | Avg: 1345.8 | Sig:  79.0454 | Exp:  410 mV | Act:  437 mV | Err: -6.2%
+I (11064) lesson-28-adc-cal: Raw: 1381 | Avg: 1369.6 | Sig:  34.4487 | Exp:  418 mV | Act:  445 mV | Err: -6.1%
+I (11164) lesson-28-adc-cal: Raw: 1383 | Avg: 1380.4 | Sig:   9.0946 | Exp:  421 mV | Act:  447 mV | Err: -5.8%
+I (11264) lesson-28-adc-cal: Raw: 1379 | Avg: 1382.8 | Sig:   2.2010 | Exp:  422 mV | Act:  448 mV | Err: -5.8%
+I (11364) lesson-28-adc-cal: Raw: 1381 | Avg: 1382.6 | Sig:   2.2706 | Exp:  422 mV | Act:  448 mV | Err: -5.8%
+I (11464) lesson-28-adc-cal: Raw: 1387 | Avg: 1382.6 | Sig:   2.2706 | Exp:  422 mV | Act:  448 mV | Err: -5.8%
+I (11564) lesson-28-adc-cal: Raw: 1373 | Avg: 1381.4 | Sig:   3.6271 | Exp:  421 mV | Act:  447 mV | Err: -5.8%
+I (11664) lesson-28-adc-cal: Raw: 1331 | Avg: 1376.2 | Sig:  16.2809 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (11764) lesson-28-adc-cal: Raw: 1380 | Avg: 1375.9 | Sig:  16.1689 | Exp:  419 mV | Act:  447 mV | Err: -6.3%
+I (11864) lesson-28-adc-cal: Raw: 1383 | Avg: 1375.9 | Sig:  16.1689 | Exp:  419 mV | Act:  447 mV | Err: -6.3%
+I (11964) lesson-28-adc-cal: Raw: 1385 | Avg: 1376.3 | Sig:  16.3575 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12064) lesson-28-adc-cal: Raw: 1383 | Avg: 1376.5 | Sig:  16.4334 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12164) lesson-28-adc-cal: Raw: 1383 | Avg: 1376.5 | Sig:  16.4334 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12264) lesson-28-adc-cal: Raw: 1383 | Avg: 1376.9 | Sig:  16.5493 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12364) lesson-28-adc-cal: Raw: 1373 | Avg: 1376.1 | Sig:  16.5224 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12464) lesson-28-adc-cal: Raw: 1379 | Avg: 1375.3 | Sig:  16.1249 | Exp:  419 mV | Act:  447 mV | Err: -6.3%
+I (12564) lesson-28-adc-cal: Raw: 1383 | Avg: 1376.3 | Sig:  16.2757 | Exp:  420 mV | Act:  447 mV | Err: -6.0%
+I (12664) lesson-28-adc-cal: Raw: 1387 | Avg: 1381.9 | Sig:   3.8427 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (12764) lesson-28-adc-cal: Raw: 1380 | Avg: 1381.9 | Sig:   3.8427 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (12864) lesson-28-adc-cal: Raw: 1385 | Avg: 1382.1 | Sig:   3.9567 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (12964) lesson-28-adc-cal: Raw: 1385 | Avg: 1382.1 | Sig:   3.9567 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (13064) lesson-28-adc-cal: Raw: 1379 | Avg: 1381.7 | Sig:   4.0565 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (13164) lesson-28-adc-cal: Raw: 1385 | Avg: 1381.9 | Sig:   4.1753 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (13264) lesson-28-adc-cal: Raw: 1389 | Avg: 1382.5 | Sig:   4.7434 | Exp:  422 mV | Act:  448 mV | Err: -5.8%
+I (13364) lesson-28-adc-cal: Raw: 1371 | Avg: 1382.3 | Sig:   5.2079 | Exp:  421 mV | Act:  448 mV | Err: -6.0%
+I (13464) lesson-28-adc-cal: Raw: 1415 | Avg: 1385.9 | Sig:  11.4159 | Exp:  423 mV | Act:  449 mV | Err: -5.8%
+I (13564) lesson-28-adc-cal: Raw: 1491 | Avg: 1396.7 | Sig:  35.0303 | Exp:  426 mV | Act:  453 mV | Err: -6.0%
+I (13664) lesson-28-adc-cal: Raw: 1567 | Avg: 1414.7 | Sig:  63.8680 | Exp:  431 mV | Act:  458 mV | Err: -5.9%
+I (13764) lesson-28-adc-cal: Raw: 1655 | Avg: 1442.2 | Sig:  97.5760 | Exp:  440 mV | Act:  467 mV | Err: -5.8%
+I (13864) lesson-28-adc-cal: Raw: 1735 | Avg: 1477.2 | Sig: 131.6137 | Exp:  450 mV | Act:  478 mV | Err: -5.9%
+I (13964) lesson-28-adc-cal: Raw: 1829 | Avg: 1521.6 | Sig: 167.1488 | Exp:  464 mV | Act:  493 mV | Err: -5.9%
+I (14064) lesson-28-adc-cal: Raw: 1894 | Avg: 1573.1 | Sig: 195.2983 | Exp:  480 mV | Act:  509 mV | Err: -5.7%
+I (14164) lesson-28-adc-cal: Raw: 1999 | Avg: 1634.5 | Sig: 223.9996 | Exp:  498 mV | Act:  530 mV | Err: -6.0%
+I (14264) lesson-28-adc-cal: Raw: 2069 | Avg: 1702.5 | Sig: 243.5530 | Exp:  519 mV | Act:  550 mV | Err: -5.6%
+I (14364) lesson-28-adc-cal: Raw: 2205 | Avg: 1785.9 | Sig: 259.6838 | Exp:  545 mV | Act:  577 mV | Err: -5.5%
+I (14464) lesson-28-adc-cal: Raw: 2211 | Avg: 1865.5 | Sig: 255.3217 | Exp:  569 mV | Act:  603 mV | Err: -5.6%
+I (14564) lesson-28-adc-cal: Raw: 2181 | Avg: 1934.5 | Sig: 235.3207 | Exp:  590 mV | Act:  626 mV | Err: -5.8%
+I (14664) lesson-28-adc-cal: Raw: 2184 | Avg: 1996.2 | Sig: 207.5004 | Exp:  609 mV | Act:  645 mV | Err: -5.6%
+I (14764) lesson-28-adc-cal: Raw: 2183 | Avg: 2049.0 | Sig: 175.7859 | Exp:  625 mV | Act:  662 mV | Err: -5.6%
+I (14864) lesson-28-adc-cal: Raw: 2197 | Avg: 2095.2 | Sig: 141.4487 | Exp:  639 mV | Act:  677 mV | Err: -5.6%
+I (14964) lesson-28-adc-cal: Raw: 2185 | Avg: 2130.8 | Sig: 107.8052 | Exp:  650 mV | Act:  689 mV | Err: -5.7%
+I (15064) lesson-28-adc-cal: Raw: 2183 | Avg: 2159.7 | Sig:  69.0379 | Exp:  659 mV | Act:  698 mV | Err: -5.6%
+I (15164) lesson-28-adc-cal: Raw: 2185 | Avg: 2178.3 | Sig:  39.7941 | Exp:  664 mV | Act:  703 mV | Err: -5.5%
+I (15264) lesson-28-adc-cal: Raw: 2183 | Avg: 2189.7 | Sig:  10.6880 | Exp:  668 mV | Act:  707 mV | Err: -5.5%
+I (15364) lesson-28-adc-cal: Raw: 2187 | Avg: 2187.9 | Sig:   9.2430 | Exp:  667 mV | Act:  706 mV | Err: -5.5%
+I (15464) lesson-28-adc-cal: Raw: 2185 | Avg: 2185.3 | Sig:   4.4234 | Exp:  667 mV | Act:  705 mV | Err: -5.4%
+I (15564) lesson-28-adc-cal: Raw: 2185 | Avg: 2185.7 | Sig:   4.1647 | Exp:  667 mV | Act:  705 mV | Err: -5.4%
+I (15664) lesson-28-adc-cal: Raw: 2185 | Avg: 2185.8 | Sig:   4.1312 | Exp:  667 mV | Act:  705 mV | Err: -5.4%
+I (15764) lesson-28-adc-cal: Raw: 2181 | Avg: 2185.6 | Sig:   4.3256 | Exp:  667 mV | Act:  705 mV | Err: -5.4%
+I (15864) lesson-28-adc-cal: Raw: 2187 | Avg: 2184.6 | Sig:   1.8379 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (15964) lesson-28-adc-cal: Raw: 2183 | Avg: 2184.4 | Sig:   1.8974 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16064) lesson-28-adc-cal: Raw: 2186 | Avg: 2184.7 | Sig:   1.8886 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16164) lesson-28-adc-cal: Raw: 2183 | Avg: 2184.5 | Sig:   1.9579 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16264) lesson-28-adc-cal: Raw: 2181 | Avg: 2184.3 | Sig:   2.2136 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16364) lesson-28-adc-cal: Raw: 2185 | Avg: 2184.1 | Sig:   2.0248 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16464) lesson-28-adc-cal: Raw: 2183 | Avg: 2183.9 | Sig:   2.0248 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16564) lesson-28-adc-cal: Raw: 2184 | Avg: 2183.8 | Sig:   1.9889 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16664) lesson-28-adc-cal: Raw: 2181 | Avg: 2183.4 | Sig:   2.1187 | Exp:  666 mV | Act:  704 mV | Err: -5.4%
+I (16764) lesson-28-adc-cal: Raw: 2185 | Avg: 2183.8 | Sig:   1.9889 | Exp:  666 mV | Act:  705 mV | Err: -5.5%
+I (16864) lesson-28-adc-cal: Raw: 2183 | Avg: 2183.4 | Sig:   1.6465 | Exp:  666 mV | Act:  704 mV | Err: -5.4%
+I (16964) lesson-28-adc-cal: Raw: 2181 | Avg: 2183.2 | Sig:   1.8135 | Exp:  666 mV | Act:  704 mV | Err: -5.4%
+I (17064) lesson-28-adc-cal: Raw: 2145 | Avg: 2179.1 | Sig:  12.0780 | Exp:  665 mV | Act:  703 mV | Err: -5.4%
+I (17164) lesson-28-adc-cal: Raw: 2170 | Avg: 2177.8 | Sig:  12.3090 | Exp:  664 mV | Act:  703 mV | Err: -5.5%
+I (17264) lesson-28-adc-cal: Raw: 2185 | Avg: 2178.2 | Sig:  12.4882 | Exp:  664 mV | Act:  703 mV | Err: -5.5%
+I (17364) lesson-28-adc-cal: Raw: 2204 | Avg: 2180.1 | Sig:  14.8582 | Exp:  665 mV | Act:  704 mV | Err: -5.5%
+I (17464) lesson-28-adc-cal: Raw: 2262 | Avg: 2188.0 | Sig:  29.9295 | Exp:  667 mV | Act:  706 mV | Err: -5.5%
+I (17564) lesson-28-adc-cal: Raw: 2403 | Avg: 2209.9 | Sig:  74.1432 | Exp:  674 mV | Act:  713 mV | Err: -5.5%
+I (17664) lesson-28-adc-cal: Raw: 2571 | Avg: 2248.9 | Sig: 134.9168 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (17764) lesson-28-adc-cal: Raw: 2727 | Avg: 2303.1 | Sig: 199.7061 | Exp:  703 mV | Act:  743 mV | Err: -5.4%
+I (17864) lesson-28-adc-cal: Raw: 2841 | Avg: 2368.9 | Sig: 256.1594 | Exp:  723 mV | Act:  765 mV | Err: -5.5%
+I (17964) lesson-28-adc-cal: Raw: 2891 | Avg: 2439.9 | Sig: 293.9068 | Exp:  744 mV | Act:  786 mV | Err: -5.3%
+I (18064) lesson-28-adc-cal: Raw: 2972 | Avg: 2522.6 | Sig: 317.1404 | Exp:  770 mV | Act:  814 mV | Err: -5.4%
+I (18164) lesson-28-adc-cal: Raw: 3080 | Avg: 2613.6 | Sig: 334.7902 | Exp:  797 mV | Act:  843 mV | Err: -5.5%
+I (18264) lesson-28-adc-cal: Raw: 3155 | Avg: 2710.6 | Sig: 337.3239 | Exp:  827 mV | Act:  874 mV | Err: -5.4%
+I (18364) lesson-28-adc-cal: Raw: 3189 | Avg: 2809.1 | Sig: 316.1025 | Exp:  857 mV | Act:  905 mV | Err: -5.3%
+I (18464) lesson-28-adc-cal: Raw: 3191 | Avg: 2902.0 | Sig: 270.7011 | Exp:  885 mV | Act:  935 mV | Err: -5.3%
+I (18564) lesson-28-adc-cal: Raw: 3191 | Avg: 2980.8 | Sig: 219.0732 | Exp:  909 mV | Act:  959 mV | Err: -5.2%
+I (18664) lesson-28-adc-cal: Raw: 3191 | Avg: 3042.8 | Sig: 173.1235 | Exp:  928 mV | Act:  979 mV | Err: -5.2%
+I (18764) lesson-28-adc-cal: Raw: 3183 | Avg: 3088.4 | Sig: 136.9827 | Exp:  942 mV | Act:  993 mV | Err: -5.1%
+I (18864) lesson-28-adc-cal: Raw: 3189 | Avg: 3123.2 | Sig: 108.3624 | Exp:  953 mV | Act: 1004 mV | Err: -5.1%
+I (18964) lesson-28-adc-cal: Raw: 3183 | Avg: 3152.4 | Sig:  72.1221 | Exp:  962 mV | Act: 1014 mV | Err: -5.1%
+I (19064) lesson-28-adc-cal: Raw: 3193 | Avg: 3174.5 | Sig:  35.0151 | Exp:  969 mV | Act: 1022 mV | Err: -5.2%
+I (19164) lesson-28-adc-cal: Raw: 3189 | Avg: 3185.4 | Sig:  11.1873 | Exp:  972 mV | Act: 1025 mV | Err: -5.2%
+I (19264) lesson-28-adc-cal: Raw: 3189 | Avg: 3188.8 | Sig:   3.3267 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (19364) lesson-28-adc-cal: Raw: 3189 | Avg: 3188.8 | Sig:   3.3267 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (19464) lesson-28-adc-cal: Raw: 3189 | Avg: 3188.6 | Sig:   3.2387 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (19564) lesson-28-adc-cal: Raw: 3184 | Avg: 3187.9 | Sig:   3.4140 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (19664) lesson-28-adc-cal: Raw: 3183 | Avg: 3187.1 | Sig:   3.5418 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (19764) lesson-28-adc-cal: Raw: 3209 | Avg: 3189.7 | Sig:   7.5137 | Exp:  973 mV | Act: 1027 mV | Err: -5.3%
+I (19864) lesson-28-adc-cal: Raw: 3178 | Avg: 3188.6 | Sig:   8.3825 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (19964) lesson-28-adc-cal: Raw: 3183 | Avg: 3188.6 | Sig:   8.3825 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (20064) lesson-28-adc-cal: Raw: 3183 | Avg: 3187.6 | Sig:   8.3958 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (20164) lesson-28-adc-cal: Raw: 3188 | Avg: 3187.5 | Sig:   8.3832 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20264) lesson-28-adc-cal: Raw: 3183 | Avg: 3186.9 | Sig:   8.4781 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20364) lesson-28-adc-cal: Raw: 3189 | Avg: 3186.9 | Sig:   8.4781 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20464) lesson-28-adc-cal: Raw: 3188 | Avg: 3186.8 | Sig:   8.4564 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20564) lesson-28-adc-cal: Raw: 3187 | Avg: 3187.1 | Sig:   8.3991 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20664) lesson-28-adc-cal: Raw: 3187 | Avg: 3187.5 | Sig:   8.2765 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (20764) lesson-28-adc-cal: Raw: 3187 | Avg: 3185.3 | Sig:   3.4335 | Exp:  972 mV | Act: 1025 mV | Err: -5.2%
+I (20864) lesson-28-adc-cal: Raw: 3187 | Avg: 3186.2 | Sig:   2.2998 | Exp:  972 mV | Act: 1025 mV | Err: -5.2%
+I (20964) lesson-28-adc-cal: Raw: 3187 | Avg: 3186.6 | Sig:   2.0111 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (21064) lesson-28-adc-cal: Raw: 3189 | Avg: 3187.2 | Sig:   1.6865 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (21164) lesson-28-adc-cal: Raw: 3187 | Avg: 3187.1 | Sig:   1.6633 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (21264) lesson-28-adc-cal: Raw: 3193 | Avg: 3188.1 | Sig:   1.9120 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (21364) lesson-28-adc-cal: Raw: 3193 | Avg: 3188.5 | Sig:   2.4608 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (21464) lesson-28-adc-cal: Raw: 3177 | Avg: 3187.4 | Sig:   4.4020 | Exp:  972 mV | Act: 1026 mV | Err: -5.3%
+I (21564) lesson-28-adc-cal: Raw: 3199 | Avg: 3188.6 | Sig:   5.7194 | Exp:  973 mV | Act: 1026 mV | Err: -5.2%
+I (21664) lesson-28-adc-cal: Raw: 3276 | Avg: 3197.5 | Sig:  28.1632 | Exp:  976 mV | Act: 1029 mV | Err: -5.2%
+I (21764) lesson-28-adc-cal: Raw: 3465 | Avg: 3225.3 | Sig:  88.7294 | Exp:  984 mV | Act: 1038 mV | Err: -5.2%
+I (21864) lesson-28-adc-cal: Raw: 3639 | Avg: 3270.5 | Sig: 156.3850 | Exp:  998 mV | Act: 1052 mV | Err: -5.1%
+I (21964) lesson-28-adc-cal: Raw: 3635 | Avg: 3315.3 | Sig: 190.2992 | Exp: 1011 mV | Act: 1066 mV | Err: -5.2%
+I (22064) lesson-28-adc-cal: Raw: 3640 | Avg: 3360.4 | Sig: 209.5133 | Exp: 1025 mV | Act: 1081 mV | Err: -5.2%
+I (22164) lesson-28-adc-cal: Raw: 3630 | Avg: 3404.7 | Sig: 215.5237 | Exp: 1039 mV | Act: 1094 mV | Err: -5.0%
+I (22264) lesson-28-adc-cal: Raw: 3629 | Avg: 3448.3 | Sig: 212.0110 | Exp: 1052 mV | Act: 1108 mV | Err: -5.1%
+I (22364) lesson-28-adc-cal: Raw: 3659 | Avg: 3494.9 | Sig: 200.5656 | Exp: 1066 mV | Act: 1123 mV | Err: -5.1%
+I (22464) lesson-28-adc-cal: Raw: 3620 | Avg: 3539.2 | Sig: 168.9851 | Exp: 1080 mV | Act: 1136 mV | Err: -4.9%
+I (22564) lesson-28-adc-cal: Raw: 3641 | Avg: 3583.4 | Sig: 121.1493 | Exp: 1093 mV | Act: 1151 mV | Err: -5.0%
+I (22664) lesson-28-adc-cal: Raw: 3637 | Avg: 3619.5 | Sig:  55.2172 | Exp: 1104 mV | Act: 1163 mV | Err: -5.1%
+I (22764) lesson-28-adc-cal: Raw: 3641 | Avg: 3637.1 | Sig:  10.1920 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (22864) lesson-28-adc-cal: Raw: 3636 | Avg: 3636.8 | Sig:  10.1740 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (22964) lesson-28-adc-cal: Raw: 3631 | Avg: 3636.4 | Sig:  10.3301 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (23064) lesson-28-adc-cal: Raw: 3631 | Avg: 3635.5 | Sig:  10.3736 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (23164) lesson-28-adc-cal: Raw: 3637 | Avg: 3636.2 | Sig:  10.1959 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (23264) lesson-28-adc-cal: Raw: 3635 | Avg: 3636.8 | Sig:   9.8972 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (23364) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.4 | Sig:   6.0955 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (23464) lesson-28-adc-cal: Raw: 3637 | Avg: 3636.1 | Sig:   3.4140 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (23564) lesson-28-adc-cal: Raw: 3627 | Avg: 3634.7 | Sig:   4.0014 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (23664) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.7 | Sig:   4.0014 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (23764) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.1 | Sig:   3.3483 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (23864) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.0 | Sig:   3.2998 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (23964) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.6 | Sig:   3.2387 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (24064) lesson-28-adc-cal: Raw: 3641 | Avg: 3635.6 | Sig:   3.5340 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (24164) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.6 | Sig:   3.5340 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (24264) lesson-28-adc-cal: Raw: 3635 | Avg: 3635.6 | Sig:   3.5340 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (24364) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.8 | Sig:   3.5528 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (24464) lesson-28-adc-cal: Raw: 3639 | Avg: 3636.0 | Sig:   3.6818 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (24564) lesson-28-adc-cal: Raw: 3639 | Avg: 3637.2 | Sig:   1.9889 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (24664) lesson-28-adc-cal: Raw: 3637 | Avg: 3637.2 | Sig:   1.9889 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (24764) lesson-28-adc-cal: Raw: 3631 | Avg: 3636.8 | Sig:   2.7406 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (24864) lesson-28-adc-cal: Raw: 3635 | Avg: 3636.8 | Sig:   2.7406 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (24964) lesson-28-adc-cal: Raw: 3632 | Avg: 3636.3 | Sig:   3.1287 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (25064) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.9 | Sig:   2.6854 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (25164) lesson-28-adc-cal: Raw: 3627 | Avg: 3634.9 | Sig:   3.8427 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25264) lesson-28-adc-cal: Raw: 3639 | Avg: 3635.3 | Sig:   4.0565 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25364) lesson-28-adc-cal: Raw: 3635 | Avg: 3635.1 | Sig:   4.0125 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25464) lesson-28-adc-cal: Raw: 3629 | Avg: 3634.1 | Sig:   4.1753 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25564) lesson-28-adc-cal: Raw: 3638 | Avg: 3634.0 | Sig:   4.0552 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25664) lesson-28-adc-cal: Raw: 3631 | Avg: 3633.4 | Sig:   4.0056 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25764) lesson-28-adc-cal: Raw: 3640 | Avg: 3634.3 | Sig:   4.3982 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25864) lesson-28-adc-cal: Raw: 3629 | Avg: 3633.7 | Sig:   4.6916 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (25964) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.2 | Sig:   4.7563 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26064) lesson-28-adc-cal: Raw: 3631 | Avg: 3633.6 | Sig:   4.7422 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26164) lesson-28-adc-cal: Raw: 3626 | Avg: 3633.5 | Sig:   4.9046 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26264) lesson-28-adc-cal: Raw: 3631 | Avg: 3632.7 | Sig:   4.5473 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (26364) lesson-28-adc-cal: Raw: 3641 | Avg: 3633.3 | Sig:   5.2292 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26464) lesson-28-adc-cal: Raw: 3631 | Avg: 3633.5 | Sig:   5.0827 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26564) lesson-28-adc-cal: Raw: 3643 | Avg: 3634.0 | Sig:   5.7735 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26664) lesson-28-adc-cal: Raw: 3640 | Avg: 3634.9 | Sig:   5.9526 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26764) lesson-28-adc-cal: Raw: 3639 | Avg: 3634.8 | Sig:   5.8652 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (26864) lesson-28-adc-cal: Raw: 3636 | Avg: 3635.5 | Sig:   5.5025 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (26964) lesson-28-adc-cal: Raw: 3623 | Avg: 3634.1 | Sig:   6.7239 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27064) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.7 | Sig:   6.6841 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27164) lesson-28-adc-cal: Raw: 3635 | Avg: 3635.6 | Sig:   5.9479 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (27264) lesson-28-adc-cal: Raw: 3632 | Avg: 3635.7 | Sig:   5.8699 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (27364) lesson-28-adc-cal: Raw: 3635 | Avg: 3635.1 | Sig:   5.5668 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27464) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.7 | Sig:   5.3965 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (27564) lesson-28-adc-cal: Raw: 3631 | Avg: 3634.5 | Sig:   4.9046 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27664) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.2 | Sig:   4.6140 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27764) lesson-28-adc-cal: Raw: 3636 | Avg: 3633.9 | Sig:   4.3576 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27864) lesson-28-adc-cal: Raw: 3640 | Avg: 3634.3 | Sig:   4.7387 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (27964) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.7 | Sig:   2.6268 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28064) lesson-28-adc-cal: Raw: 3639 | Avg: 3635.9 | Sig:   2.8067 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28164) lesson-28-adc-cal: Raw: 3637 | Avg: 3636.1 | Sig:   2.8067 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28264) lesson-28-adc-cal: Raw: 3639 | Avg: 3636.8 | Sig:   2.5298 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (28364) lesson-28-adc-cal: Raw: 3634 | Avg: 3636.7 | Sig:   2.6268 | Exp: 1110 mV | Act: 1168 mV | Err: -5.0%
+I (28464) lesson-28-adc-cal: Raw: 3631 | Avg: 3636.1 | Sig:   3.1780 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28564) lesson-28-adc-cal: Raw: 3630 | Avg: 3636.0 | Sig:   3.3665 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28664) lesson-28-adc-cal: Raw: 3639 | Avg: 3636.2 | Sig:   3.4897 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28764) lesson-28-adc-cal: Raw: 3635 | Avg: 3636.1 | Sig:   3.5103 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (28864) lesson-28-adc-cal: Raw: 3631 | Avg: 3635.2 | Sig:   3.5528 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (28964) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.2 | Sig:   3.5528 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29064) lesson-28-adc-cal: Raw: 3639 | Avg: 3635.2 | Sig:   3.5528 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29164) lesson-28-adc-cal: Raw: 3637 | Avg: 3635.2 | Sig:   3.5528 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29264) lesson-28-adc-cal: Raw: 3624 | Avg: 3633.7 | Sig:   4.7387 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29364) lesson-28-adc-cal: Raw: 3635 | Avg: 3633.8 | Sig:   4.7563 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29464) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.4 | Sig:   4.7422 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29564) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.9 | Sig:   4.4833 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29664) lesson-28-adc-cal: Raw: 3631 | Avg: 3634.1 | Sig:   4.3830 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29764) lesson-28-adc-cal: Raw: 3632 | Avg: 3633.8 | Sig:   4.4171 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29864) lesson-28-adc-cal: Raw: 3631 | Avg: 3633.8 | Sig:   4.4171 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (29964) lesson-28-adc-cal: Raw: 3629 | Avg: 3633.0 | Sig:   4.4969 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (30064) lesson-28-adc-cal: Raw: 3635 | Avg: 3632.6 | Sig:   4.0607 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (30164) lesson-28-adc-cal: Raw: 3635 | Avg: 3632.4 | Sig:   3.8644 | Exp: 1108 mV | Act: 1166 mV | Err: -5.0%
+I (30264) lesson-28-adc-cal: Raw: 3626 | Avg: 3632.6 | Sig:   3.4059 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (30364) lesson-28-adc-cal: Raw: 3639 | Avg: 3633.0 | Sig:   3.9158 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (30464) lesson-28-adc-cal: Raw: 3636 | Avg: 3632.9 | Sig:   3.8137 | Exp: 1108 mV | Act: 1167 mV | Err: -5.1%
+I (30564) lesson-28-adc-cal: Raw: 3637 | Avg: 3633.1 | Sig:   3.9847 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (30664) lesson-28-adc-cal: Raw: 3640 | Avg: 3634.0 | Sig:   4.4472 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (30764) lesson-28-adc-cal: Raw: 3627 | Avg: 3633.5 | Sig:   4.9497 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (30864) lesson-28-adc-cal: Raw: 3635 | Avg: 3633.9 | Sig:   4.8865 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (30964) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.5 | Sig:   4.5765 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31064) lesson-28-adc-cal: Raw: 3637 | Avg: 3634.7 | Sig:   4.6440 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31164) lesson-28-adc-cal: Raw: 3636 | Avg: 3634.8 | Sig:   4.6619 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31264) lesson-28-adc-cal: Raw: 3635 | Avg: 3635.7 | Sig:   3.4976 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (31364) lesson-28-adc-cal: Raw: 3631 | Avg: 3634.9 | Sig:   3.5730 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31464) lesson-28-adc-cal: Raw: 3643 | Avg: 3635.6 | Sig:   4.4020 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (31564) lesson-28-adc-cal: Raw: 3639 | Avg: 3635.8 | Sig:   4.5166 | Exp: 1109 mV | Act: 1168 mV | Err: -5.1%
+I (31664) lesson-28-adc-cal: Raw: 3625 | Avg: 3634.3 | Sig:   5.3759 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31764) lesson-28-adc-cal: Raw: 3631 | Avg: 3634.7 | Sig:   4.9001 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31864) lesson-28-adc-cal: Raw: 3631 | Avg: 3634.3 | Sig:   5.0343 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (31964) lesson-28-adc-cal: Raw: 3635 | Avg: 3634.3 | Sig:   5.0343 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (32064) lesson-28-adc-cal: Raw: 3631 | Avg: 3633.7 | Sig:   5.0343 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (32164) lesson-28-adc-cal: Raw: 3635 | Avg: 3633.6 | Sig:   4.9933 | Exp: 1109 mV | Act: 1167 mV | Err: -5.0%
+I (32264) lesson-28-adc-cal: Raw: 3579 | Avg: 3628.0 | Sig:  17.9196 | Exp: 1107 mV | Act: 1165 mV | Err: -5.0%
+I (32364) lesson-28-adc-cal: Raw: 3501 | Avg: 3615.0 | Sig:  43.8685 | Exp: 1103 mV | Act: 1161 mV | Err: -5.0%
+I (32464) lesson-28-adc-cal: Raw: 3419 | Avg: 3592.6 | Sig:  74.4867 | Exp: 1096 mV | Act: 1154 mV | Err: -5.0%
+I (32564) lesson-28-adc-cal: Raw: 3339 | Avg: 3562.6 | Sig: 107.0277 | Exp: 1087 mV | Act: 1144 mV | Err: -5.0%
+I (32664) lesson-28-adc-cal: Raw: 3283 | Avg: 3528.4 | Sig: 135.6795 | Exp: 1077 mV | Act: 1133 mV | Err: -4.9%
+I (32764) lesson-28-adc-cal: Raw: 3225 | Avg: 3487.8 | Sig: 160.1116 | Exp: 1064 mV | Act: 1121 mV | Err: -5.1%
+I (32864) lesson-28-adc-cal: Raw: 3147 | Avg: 3439.4 | Sig: 183.4649 | Exp: 1049 mV | Act: 1105 mV | Err: -5.1%
+I (32964) lesson-28-adc-cal: Raw: 3095 | Avg: 3385.4 | Sig: 198.3617 | Exp: 1033 mV | Act: 1088 mV | Err: -5.1%
+I (33064) lesson-28-adc-cal: Raw: 3038 | Avg: 3326.1 | Sig: 205.2990 | Exp: 1015 mV | Act: 1070 mV | Err: -5.1%
+I (33164) lesson-28-adc-cal: Raw: 3003 | Avg: 3262.9 | Sig: 196.7404 | Exp:  996 mV | Act: 1049 mV | Err: -5.1%
+I (33264) lesson-28-adc-cal: Raw: 2905 | Avg: 3195.5 | Sig: 191.8062 | Exp:  975 mV | Act: 1029 mV | Err: -5.2%
+I (33364) lesson-28-adc-cal: Raw: 2765 | Avg: 3121.9 | Sig: 202.4672 | Exp:  952 mV | Act: 1004 mV | Err: -5.2%
+I (33464) lesson-28-adc-cal: Raw: 2752 | Avg: 3055.2 | Sig: 203.5806 | Exp:  932 mV | Act:  983 mV | Err: -5.2%
+I (33564) lesson-28-adc-cal: Raw: 2687 | Avg: 2990.0 | Sig: 206.9686 | Exp:  912 mV | Act:  962 mV | Err: -5.2%
+I (33664) lesson-28-adc-cal: Raw: 2607 | Avg: 2922.4 | Sig: 210.9940 | Exp:  892 mV | Act:  940 mV | Err: -5.1%
+I (33764) lesson-28-adc-cal: Raw: 2521 | Avg: 2852.0 | Sig: 216.1944 | Exp:  870 mV | Act:  919 mV | Err: -5.3%
+I (33864) lesson-28-adc-cal: Raw: 2439 | Avg: 2781.2 | Sig: 224.6176 | Exp:  848 mV | Act:  896 mV | Err: -5.4%
+I (33964) lesson-28-adc-cal: Raw: 2359 | Avg: 2707.6 | Sig: 230.8656 | Exp:  826 mV | Act:  873 mV | Err: -5.4%
+I (34064) lesson-28-adc-cal: Raw: 2286 | Avg: 2632.4 | Sig: 233.7431 | Exp:  803 mV | Act:  848 mV | Err: -5.3%
+I (34164) lesson-28-adc-cal: Raw: 2253 | Avg: 2557.4 | Sig: 221.6284 | Exp:  780 mV | Act:  825 mV | Err: -5.5%
+I (34264) lesson-28-adc-cal: Raw: 2261 | Avg: 2493.0 | Sig: 202.1072 | Exp:  760 mV | Act:  804 mV | Err: -5.5%
+I (34364) lesson-28-adc-cal: Raw: 2255 | Avg: 2442.0 | Sig: 189.8175 | Exp:  745 mV | Act:  787 mV | Err: -5.3%
+I (34464) lesson-28-adc-cal: Raw: 2255 | Avg: 2392.3 | Sig: 162.7691 | Exp:  730 mV | Act:  771 mV | Err: -5.3%
+I (34564) lesson-28-adc-cal: Raw: 2259 | Avg: 2349.5 | Sig: 129.5490 | Exp:  717 mV | Act:  758 mV | Err: -5.4%
+I (34664) lesson-28-adc-cal: Raw: 2255 | Avg: 2314.3 | Sig:  95.0322 | Exp:  706 mV | Act:  747 mV | Err: -5.5%
+I (34764) lesson-28-adc-cal: Raw: 2258 | Avg: 2288.0 | Sig:  62.1897 | Exp:  698 mV | Act:  738 mV | Err: -5.4%
+I (34864) lesson-28-adc-cal: Raw: 2259 | Avg: 2270.0 | Sig:  32.6735 | Exp:  692 mV | Act:  733 mV | Err: -5.6%
+I (34964) lesson-28-adc-cal: Raw: 2253 | Avg: 2259.4 | Sig:   9.7320 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (35064) lesson-28-adc-cal: Raw: 2253 | Avg: 2256.1 | Sig:   2.9231 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35164) lesson-28-adc-cal: Raw: 2253 | Avg: 2256.1 | Sig:   2.9231 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35264) lesson-28-adc-cal: Raw: 2255 | Avg: 2255.5 | Sig:   2.3688 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35364) lesson-28-adc-cal: Raw: 2259 | Avg: 2255.9 | Sig:   2.6013 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35464) lesson-28-adc-cal: Raw: 2251 | Avg: 2255.5 | Sig:   3.0277 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35564) lesson-28-adc-cal: Raw: 2255 | Avg: 2255.1 | Sig:   2.7669 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35664) lesson-28-adc-cal: Raw: 2258 | Avg: 2255.4 | Sig:   2.9136 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35764) lesson-28-adc-cal: Raw: 2255 | Avg: 2255.1 | Sig:   2.7669 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35864) lesson-28-adc-cal: Raw: 2255 | Avg: 2254.7 | Sig:   2.4060 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (35964) lesson-28-adc-cal: Raw: 2251 | Avg: 2254.5 | Sig:   2.6352 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (36064) lesson-28-adc-cal: Raw: 2219 | Avg: 2251.1 | Sig:  11.5706 | Exp:  687 mV | Act:  726 mV | Err: -5.4%
+I (36164) lesson-28-adc-cal: Raw: 2237 | Avg: 2249.5 | Sig:  12.3581 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36264) lesson-28-adc-cal: Raw: 2254 | Avg: 2249.4 | Sig:  12.3126 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36364) lesson-28-adc-cal: Raw: 2255 | Avg: 2249.0 | Sig:  12.0277 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36464) lesson-28-adc-cal: Raw: 2259 | Avg: 2249.8 | Sig:  12.4347 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36564) lesson-28-adc-cal: Raw: 2255 | Avg: 2249.8 | Sig:  12.4347 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36664) lesson-28-adc-cal: Raw: 2257 | Avg: 2249.7 | Sig:  12.3653 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36764) lesson-28-adc-cal: Raw: 2257 | Avg: 2249.9 | Sig:  12.4762 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36864) lesson-28-adc-cal: Raw: 2257 | Avg: 2250.1 | Sig:  12.5826 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (36964) lesson-28-adc-cal: Raw: 2258 | Avg: 2250.8 | Sig:  12.8305 | Exp:  687 mV | Act:  726 mV | Err: -5.4%
+I (37064) lesson-28-adc-cal: Raw: 2259 | Avg: 2254.8 | Sig:   6.4773 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (37164) lesson-28-adc-cal: Raw: 2257 | Avg: 2256.8 | Sig:   1.6865 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (37264) lesson-28-adc-cal: Raw: 2255 | Avg: 2256.9 | Sig:   1.5239 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (37364) lesson-28-adc-cal: Raw: 2263 | Avg: 2257.7 | Sig:   2.3118 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (37464) lesson-28-adc-cal: Raw: 2253 | Avg: 2257.1 | Sig:   2.6854 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (37564) lesson-28-adc-cal: Raw: 2259 | Avg: 2257.5 | Sig:   2.6352 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (37664) lesson-28-adc-cal: Raw: 2255 | Avg: 2257.3 | Sig:   2.7508 | Exp:  689 mV | Act:  728 mV | Err: -5.4%
+I (37764) lesson-28-adc-cal: Raw: 2258 | Avg: 2257.4 | Sig:   2.7568 | Exp:  689 mV | Act:  728 mV | Err: -5.4%
+I (37864) lesson-28-adc-cal: Raw: 2263 | Avg: 2258.0 | Sig:   3.2660 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (37964) lesson-28-adc-cal: Raw: 2258 | Avg: 2258.0 | Sig:   3.2660 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38064) lesson-28-adc-cal: Raw: 2259 | Avg: 2258.0 | Sig:   3.2660 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38164) lesson-28-adc-cal: Raw: 2251 | Avg: 2257.4 | Sig:   3.9497 | Exp:  689 mV | Act:  728 mV | Err: -5.4%
+I (38264) lesson-28-adc-cal: Raw: 2259 | Avg: 2257.8 | Sig:   3.8816 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38364) lesson-28-adc-cal: Raw: 2260 | Avg: 2257.5 | Sig:   3.5355 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38464) lesson-28-adc-cal: Raw: 2257 | Avg: 2257.9 | Sig:   3.1780 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38564) lesson-28-adc-cal: Raw: 2253 | Avg: 2257.3 | Sig:   3.4976 | Exp:  689 mV | Act:  728 mV | Err: -5.4%
+I (38664) lesson-28-adc-cal: Raw: 2261 | Avg: 2257.9 | Sig:   3.5730 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (38764) lesson-28-adc-cal: Raw: 2247 | Avg: 2256.8 | Sig:   4.9621 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (38864) lesson-28-adc-cal: Raw: 2253 | Avg: 2255.8 | Sig:   4.5656 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (38964) lesson-28-adc-cal: Raw: 2299 | Avg: 2259.9 | Sig:  14.4564 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39064) lesson-28-adc-cal: Raw: 2261 | Avg: 2260.1 | Sig:  14.4564 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39164) lesson-28-adc-cal: Raw: 2255 | Avg: 2260.5 | Sig:  14.2302 | Exp:  690 mV | Act:  730 mV | Err: -5.5%
+I (39264) lesson-28-adc-cal: Raw: 2253 | Avg: 2259.9 | Sig:  14.4257 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39364) lesson-28-adc-cal: Raw: 2251 | Avg: 2259.0 | Sig:  14.6969 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39464) lesson-28-adc-cal: Raw: 2253 | Avg: 2258.6 | Sig:  14.8114 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39564) lesson-28-adc-cal: Raw: 2261 | Avg: 2259.4 | Sig:  14.6909 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39664) lesson-28-adc-cal: Raw: 2257 | Avg: 2259.0 | Sig:  14.6969 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39764) lesson-28-adc-cal: Raw: 2253 | Avg: 2259.6 | Sig:  14.2688 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39864) lesson-28-adc-cal: Raw: 2259 | Avg: 2260.2 | Sig:  14.0855 | Exp:  689 mV | Act:  729 mV | Err: -5.5%
+I (39964) lesson-28-adc-cal: Raw: 2255 | Avg: 2255.8 | Sig:   3.5528 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (40064) lesson-28-adc-cal: Raw: 2251 | Avg: 2254.8 | Sig:   3.3267 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (40164) lesson-28-adc-cal: Raw: 2261 | Avg: 2255.4 | Sig:   3.8644 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (40264) lesson-28-adc-cal: Raw: 2253 | Avg: 2255.4 | Sig:   3.8644 | Exp:  688 mV | Act:  728 mV | Err: -5.5%
+I (40364) lesson-28-adc-cal: Raw: 2187 | Avg: 2249.0 | Sig:  22.0706 | Exp:  686 mV | Act:  726 mV | Err: -5.5%
+I (40464) lesson-28-adc-cal: Raw: 2091 | Avg: 2232.8 | Sig:  54.4749 | Exp:  681 mV | Act:  721 mV | Err: -5.5%
+I (40564) lesson-28-adc-cal: Raw: 1934 | Avg: 2200.1 | Sig: 107.7553 | Exp:  671 mV | Act:  710 mV | Err: -5.5%
+I (40664) lesson-28-adc-cal: Raw: 1787 | Avg: 2153.1 | Sig: 166.6083 | Exp:  657 mV | Act:  696 mV | Err: -5.6%
+I (40764) lesson-28-adc-cal: Raw: 1659 | Avg: 2093.7 | Sig: 223.2826 | Exp:  639 mV | Act:  677 mV | Err: -5.6%
+I (40864) lesson-28-adc-cal: Raw: 1531 | Avg: 2020.9 | Sig: 275.8834 | Exp:  616 mV | Act:  653 mV | Err: -5.7%
+I (40964) lesson-28-adc-cal: Raw: 1417 | Avg: 1937.1 | Sig: 320.5331 | Exp:  591 mV | Act:  627 mV | Err: -5.7%
+I (41064) lesson-28-adc-cal: Raw: 1333 | Avg: 1845.3 | Sig: 350.6825 | Exp:  563 mV | Act:  596 mV | Err: -5.5%
+I (41164) lesson-28-adc-cal: Raw: 1243 | Avg: 1743.5 | Sig: 364.1017 | Exp:  532 mV | Act:  564 mV | Err: -5.7%
+I (41264) lesson-28-adc-cal: Raw: 1160 | Avg: 1634.2 | Sig: 358.1663 | Exp:  498 mV | Act:  529 mV | Err: -5.9%
+I (41364) lesson-28-adc-cal: Raw: 1092 | Avg: 1524.7 | Sig: 337.1512 | Exp:  465 mV | Act:  494 mV | Err: -5.9%
+I (41464) lesson-28-adc-cal: Raw: 1093 | Avg: 1424.9 | Sig: 296.1056 | Exp:  434 mV | Act:  462 mV | Err: -6.1%
+I (41564) lesson-28-adc-cal: Raw: 1045 | Avg: 1336.0 | Sig: 257.1675 | Exp:  407 mV | Act:  434 mV | Err: -6.2%
+I (41664) lesson-28-adc-cal: Raw: 1045 | Avg: 1261.8 | Sig: 216.3946 | Exp:  385 mV | Act:  410 mV | Err: -6.1%
+I (41764) lesson-28-adc-cal: Raw: 1047 | Avg: 1200.6 | Sig: 173.9593 | Exp:  366 mV | Act:  389 mV | Err: -5.9%
+I (41864) lesson-28-adc-cal: Raw: 1043 | Avg: 1151.8 | Sig: 135.0784 | Exp:  351 mV | Act:  374 mV | Err: -6.1%
+I (41964) lesson-28-adc-cal: Raw: 1045 | Avg: 1114.6 | Sig: 100.8037 | Exp:  340 mV | Act:  362 mV | Err: -6.1%
+I (42064) lesson-28-adc-cal: Raw: 1047 | Avg: 1086.0 | Sig:  66.7866 | Exp:  331 mV | Act:  352 mV | Err: -6.0%
+I (42164) lesson-28-adc-cal: Raw: 1045 | Avg: 1066.2 | Sig:  38.3777 | Exp:  325 mV | Act:  346 mV | Err: -6.1%
+I (42264) lesson-28-adc-cal: Raw: 1047 | Avg: 1054.9 | Sig:  19.8575 | Exp:  322 mV | Act:  342 mV | Err: -5.8%
+I (42364) lesson-28-adc-cal: Raw: 1044 | Avg: 1050.1 | Sig:  15.1324 | Exp:  320 mV | Act:  341 mV | Err: -6.2%
+I (42464) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.5 | Sig:   1.4337 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (42564) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.7 | Sig:   1.4944 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (42664) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.9 | Sig:   1.5239 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (42764) lesson-28-adc-cal: Raw: 1039 | Avg: 1045.1 | Sig:   2.6013 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (42864) lesson-28-adc-cal: Raw: 1044 | Avg: 1045.2 | Sig:   2.5298 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (42964) lesson-28-adc-cal: Raw: 1041 | Avg: 1044.8 | Sig:   2.8597 | Exp:  318 mV | Act:  339 mV | Err: -6.2%
+I (43064) lesson-28-adc-cal: Raw: 1047 | Avg: 1044.8 | Sig:   2.8597 | Exp:  318 mV | Act:  339 mV | Err: -6.2%
+I (43164) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.0 | Sig:   2.9439 | Exp:  318 mV | Act:  339 mV | Err: -6.2%
+I (43264) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.0 | Sig:   2.9439 | Exp:  318 mV | Act:  339 mV | Err: -6.2%
+I (43364) lesson-28-adc-cal: Raw: 1049 | Avg: 1045.5 | Sig:   3.1710 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43464) lesson-28-adc-cal: Raw: 1045 | Avg: 1045.3 | Sig:   3.1287 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43564) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.3 | Sig:   3.1287 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43664) lesson-28-adc-cal: Raw: 1045 | Avg: 1045.1 | Sig:   3.0714 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43764) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.9 | Sig:   2.2336 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43864) lesson-28-adc-cal: Raw: 1047 | Avg: 1046.2 | Sig:   2.1499 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (43964) lesson-28-adc-cal: Raw: 1047 | Avg: 1046.8 | Sig:   1.1353 | Exp:  319 mV | Act:  340 mV | Err: -6.2%
+I (44064) lesson-28-adc-cal: Raw: 1048 | Avg: 1046.9 | Sig:   1.1972 | Exp:  319 mV | Act:  340 mV | Err: -6.2%
+I (44164) lesson-28-adc-cal: Raw: 1071 | Avg: 1049.3 | Sig:   7.7179 | Exp:  320 mV | Act:  340 mV | Err: -5.9%
+I (44264) lesson-28-adc-cal: Raw: 1019 | Avg: 1046.5 | Sig:  12.3401 | Exp:  319 mV | Act:  340 mV | Err: -6.2%
+I (44364) lesson-28-adc-cal: Raw: 1047 | Avg: 1046.3 | Sig:  12.3112 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (44464) lesson-28-adc-cal: Raw: 1049 | Avg: 1046.7 | Sig:  12.3293 | Exp:  319 mV | Act:  340 mV | Err: -6.2%
+I (44564) lesson-28-adc-cal: Raw: 1037 | Avg: 1045.7 | Sig:  12.7021 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (44664) lesson-28-adc-cal: Raw: 1049 | Avg: 1046.1 | Sig:  12.7406 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (44764) lesson-28-adc-cal: Raw: 1047 | Avg: 1046.1 | Sig:  12.7406 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (44864) lesson-28-adc-cal: Raw: 1045 | Avg: 1045.9 | Sig:  12.7406 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (44964) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.9 | Sig:  12.7406 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45064) lesson-28-adc-cal: Raw: 1044 | Avg: 1045.5 | Sig:  12.7301 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45164) lesson-28-adc-cal: Raw: 1045 | Avg: 1042.9 | Sig:   9.0732 | Exp:  318 mV | Act:  338 mV | Err: -5.9%
+I (45264) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.7 | Sig:   3.4657 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45364) lesson-28-adc-cal: Raw: 1043 | Avg: 1045.3 | Sig:   3.5292 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45464) lesson-28-adc-cal: Raw: 1047 | Avg: 1045.1 | Sig:   3.3483 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45564) lesson-28-adc-cal: Raw: 1043 | Avg: 1045.7 | Sig:   2.0028 | Exp:  319 mV | Act:  339 mV | Err: -5.9%
+I (45664) lesson-28-adc-cal: Raw: 1039 | Avg: 1044.7 | Sig:   2.5841 | Exp:  318 mV | Act:  339 mV | Err: -6.2%
+I (45764) lesson-28-adc-cal: Raw: 1033 | Avg: 1043.3 | Sig:   4.3729 | Exp:  318 mV | Act:  338 mV | Err: -5.9%
+I (45864) lesson-28-adc-cal: Raw:  932 | Avg: 1032.0 | Sig:  35.4025 | Exp:  315 mV | Act:  335 mV | Err: -6.0%
+I (45964) lesson-28-adc-cal: Raw:  813 | Avg: 1008.6 | Sig:  77.1293 | Exp:  307 mV | Act:  327 mV | Err: -6.1%
+I (46064) lesson-28-adc-cal: Raw:  661 | Avg:  970.3 | Sig: 132.6835 | Exp:  296 mV | Act:  316 mV | Err: -6.3%
+I (46164) lesson-28-adc-cal: Raw:  549 | Avg:  920.7 | Sig: 184.3174 | Exp:  281 mV | Act:  300 mV | Err: -6.3%
+I (46264) lesson-28-adc-cal: Raw:  425 | Avg:  858.5 | Sig: 234.9550 | Exp:  262 mV | Act:  280 mV | Err: -6.4%
+I (46364) lesson-28-adc-cal: Raw:  325 | Avg:  786.7 | Sig: 278.0616 | Exp:  240 mV | Act:  257 mV | Err: -6.6%
+I (46464) lesson-28-adc-cal: Raw:  247 | Avg:  706.7 | Sig: 308.2899 | Exp:  215 mV | Act:  231 mV | Err: -6.9%
+I (46564) lesson-28-adc-cal: Raw:  115 | Avg:  613.9 | Sig: 334.3779 | Exp:  187 mV | Act:  200 mV | Err: -6.5%
+I (46664) lesson-28-adc-cal: Raw:    0 | Avg:  510.0 | Sig: 348.7260 | Exp:  155 mV | Act:  166 mV | Err: -6.6%
+I (46764) lesson-28-adc-cal: Raw:    0 | Avg:  406.7 | Sig: 329.0306 | Exp:  124 mV | Act:  133 mV | Err: -6.8%
+I (46864) lesson-28-adc-cal: Raw:    9 | Avg:  314.4 | Sig: 292.7613 | Exp:   95 mV | Act:  103 mV | Err: -7.8%
+I (46964) lesson-28-adc-cal: Raw:    0 | Avg:  233.1 | Sig: 248.4465 | Exp:   71 mV | Act:   77 mV | Err: -7.8%
+I (47064) lesson-28-adc-cal: Raw:   26 | Avg:  169.6 | Sig: 204.1243 | Exp:   51 mV | Act:   56 mV | Err: -8.9%
+I (47164) lesson-28-adc-cal: Raw:    0 | Avg:  114.7 | Sig: 159.7498 | Exp:   35 mV | Act:   39 mV | Err: -10.3%
+I (47264) lesson-28-adc-cal: Raw:    0 | Avg:   72.2 | Sig: 119.4839 | Exp:   22 mV | Act:   25 mV | Err: -12.0%
+I (47364) lesson-28-adc-cal: Raw:    0 | Avg:   39.7 | Sig:  81.1241 | Exp:   12 mV | Act:   14 mV | Err: -14.3%
+I (47464) lesson-28-adc-cal: Raw:    0 | Avg:   15.0 | Sig:  36.1048 | Exp:    4 mV | Act:    6 mV | Err: -33.3%
+I (47564) lesson-28-adc-cal: Raw:    0 | Avg:    3.5 | Sig:   8.3964 | Exp:    1 mV | Act:    3 mV | Err: -66.7%
+I (47664) lesson-28-adc-cal: Raw:    0 | Avg:    3.5 | Sig:   8.3964 | Exp:    1 mV | Act:    3 mV | Err: -66.7%
+I (47764) lesson-28-adc-cal: Raw:    0 | Avg:    3.5 | Sig:   8.3964 | Exp:    1 mV | Act:    3 mV | Err: -66.7%
+I (47864) lesson-28-adc-cal: Raw:    0 | Avg:    2.6 | Sig:   8.2219 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (47964) lesson-28-adc-cal: Raw:    0 | Avg:    2.6 | Sig:   8.2219 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (48964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (49964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50764) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50864) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (50964) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51064) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51164) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51264) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51364) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51464) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51564) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
+I (51664) lesson-28-adc-cal: Raw:    0 | Avg:    0.0 | Sig:   0.0000 | Exp:    0 mV | Act:    0 mV | Err: +nan%
