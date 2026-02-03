@@ -3,19 +3,8 @@ dependencies:
     source:
       type: idf
     version: 5.5.2
-  supcik/buzzer:
-    component_hash: 8fc191ab2efe6526905b597c30aa3bf21e2de54152044197fd00b2dcbf54e4a4
-    dependencies:
-    - name: idf
-      require: private
-      version: '>=5.3'
-    source:
-      registry_url: https://components.espressif.com/
-      type: service
-    version: 3.0.1
 direct_dependencies:
 - idf
-- supcik/buzzer
-manifest_hash: de20af2d11bd4ea41a0675be822fdbc32dec1c3506e099250c87fdc6ceb84cc3
+manifest_hash: 793471cc818e6f29b872ed3ad4330ba112e686077892bdba2d62916f80078788
 target: esp32s3
 version: 2.0.0
