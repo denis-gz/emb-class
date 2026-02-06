@@ -1,0 +1,80 @@
+menu "Project Configuration"
+
+    orsource "Kconfig.env_caps"
+
+    config PIN_DEVKIT_BUTTON
+        int "Pin number of Devkit's on-board button"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_ENCODER_S1
+        int "Pin number of rotary encoder output S1 (counter)"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_ENCODER_S2
+        int "Pin number of rotary encoder output S2 (direction)"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_ENCODER_KEY
+        int "Pin number of rotary encoder key output"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_A
+        int "Pin number of LED display segment A"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_B
+        int "Pin number of LED display segment B"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_C
+        int "Pin number of LED display segment C"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_D
+        int "Pin number of LED display segment D"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_E
+        int "Pin number of LED display segment E"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_F
+        int "Pin number of LED display segment F"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_G
+        int "Pin number of LED display segment G"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_SEG_DP
+        int "Pin number of LED display segment DP"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_DIG1
+        int "Pin number of LED display common anode DIG1"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_DIG2
+        int "Pin number of LED display common anode DIG2"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+    config PIN_LED_DIG3
+        int "Pin number of LED display common anode DIG3"
+        range ENV_GPIO_RANGE_MIN ENV_GPIO_OUT_RANGE_MAX
+        default 0
+
+endmenu
