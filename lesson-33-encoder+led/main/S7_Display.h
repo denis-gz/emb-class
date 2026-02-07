@@ -17,7 +17,7 @@ public:
     void Stop();
 
     void Print(const char* text);
-    void Print(int n, int point_position = -1);
+    void Print(int n, int input_position = -1);
 
 private:
     static bool on_timer_tick(gptimer_handle_t timer, const gptimer_alarm_event_data_t* edata, void* user_ctx);

@@ -97,8 +97,13 @@ void Calculator::update_display()
             break;
         }
         case Result: {
-            int result = get_result();
-            m_display.Print(result);
+            if (m_operator == Divide && m_arg_2 == 0) {
+                m_display.Print("ERR");
+            }
+            else {
+                int result = get_result();
+                m_display.Print(result);
+            }
             break;
         }
     }

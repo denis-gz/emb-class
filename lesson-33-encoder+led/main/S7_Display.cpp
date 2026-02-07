@@ -9,8 +9,6 @@
 S7_Display::S7_Display(size_t num_digits)
     : m_num_digits(num_digits)
 {
-    // The caller should configure each digit individually using subscript operator[]
-    // on this object
     m_digits = new S7_Digit[num_digits];
 
     S7_Digit::digit_config_t digit_config = {
@@ -87,37 +85,53 @@ void S7_Display::Stop()
 void S7_Display::Print(const char* text)
 {
     for (int i = 0; i < m_num_digits; ++i) {
+        // Digits indexing go the opposite way to text
+        int j = m_num_digits-i-1;
         if (isdigit(text[i])) {
-            m_digits[m_num_digits-i-1].SetSegments(S7_Digit::DIGIT[text[i] - 0x30]);
+            m_digits[j].SetSegments(S7_Digit::DIGIT[text[i] - 0x30]);
         }
         else if (int ch = toupper(text[i]) - 0x41; ch < countof(S7_Digit::LETTER)) {
-            m_digits[m_num_digits-i-1].SetSegments(S7_Digit::LETTER[ch]);
+            m_digits[j].SetSegments(S7_Digit::LETTER[ch]);
+        }
+        else if (text[i] == '-') {
+            m_digits[j].SetSegments(S7_Digit::SEG_G);
         }
         else {
-            m_digits[m_num_digits-i-1].SetSegments(S7_Digit::SEG_D);
+            m_digits[j].SetSegments(S7_Digit::SEG_D);
         }
     }
 }
 
-void S7_Display::Print(int n, int point_position)
+void S7_Display::Print(int n, int input_position)
 {
     bool is_neg = (n < 0);
     if (is_neg)
         n = -n;
+
+    int k = 0;
+    for (int m = n; m; k++)
+        m /= 10;
+    if (k > m_num_digits || (is_neg && k > m_num_digits - 1)) {
+        Print("---");
+        return;
+    }
+
     bool skip_rest = (n == 0);
     for (int i = 0; i < m_num_digits; ++i) {
-        auto point = (i == point_position) ? S7_Digit::SEG_DP : S7_Digit::None;
         if (skip_rest) {
-            if (is_neg) {
+            if (i <= input_position) {
+                m_digits[i].SetSegments(S7_Digit::DIGIT[0]);
+            }
+            else if (is_neg) {
                 is_neg = false;
                 m_digits[i].SetSegments(S7_Digit::SEG_G);
             }
             else {
-                m_digits[i].SetSegments(point | S7_Digit::None);
+                m_digits[i].SetSegments(S7_Digit::None);
             }
         }
         else {
-            m_digits[i].SetSegments(point | S7_Digit::DIGIT[n % 10]);
+            m_digits[i].SetSegments(S7_Digit::DIGIT[n % 10]);
             skip_rest = !(n /= 10);
         }
     }
