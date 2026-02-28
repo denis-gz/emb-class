@@ -21,6 +21,8 @@ private:
     SSD1306_t m_oled = {};
     TaskHandle_t m_task = nullptr;
 
+    volatile bool m_stop_task = false;
+
     std::tm m_time_info = {};
     std::tm m_new_time = {};
 
