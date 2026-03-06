@@ -2,4 +2,11 @@
 /**/managed_components/
 /**/.qtcreator/
 /**/CMakeLists.txt.user
+/STM32/**/.metadata
+/STM32/**/.settings
+/STM32/**/Debug
+/STM32/**/Release
+/STM32/**/Drivers
 /get-started
+/.metadata
+/.no-git
