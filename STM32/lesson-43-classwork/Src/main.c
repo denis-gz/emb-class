@@ -53,6 +53,7 @@ ADC_HandleTypeDef hadc1;
 DMA_HandleTypeDef hdma_adc1;
 
 UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -143,14 +144,15 @@ int main(void)
     #endif
 
     #ifdef ADC_DMA
-      if (half_ready) {
-          half_ready = 0;
-          HAL_UART_Transmit(&huart1, (uint8_t*)"Half\r\n", 6, 100);
-      }
-
       if (full_ready) {
-          full_ready = 0;
-          HAL_UART_Transmit(&huart1, (uint8_t*)"Full\r\n", 6, 100);
+        full_ready = 0;
+        uint32_t avg = 0;
+        for (size_t i = 0; i < countof(adc_buf); ++i)
+        	avg += adc_buf[i];
+        avg /= countof(adc_buf);
+        char text[32];
+        snprintf(text, sizeof(text), "Full: %lu\r\n", avg);
+        HAL_UART_Transmit_DMA(&huart1, (uint8_t*) text, strlen(text));
       }
     #endif
     /* USER CODE END WHILE */
@@ -300,6 +302,9 @@ static void MX_DMA_Init(void)
   /* DMA2_Stream0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
+  /* DMA2_Stream7_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream7_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream7_IRQn);
 
 }
 
