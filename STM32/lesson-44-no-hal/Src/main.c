@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <limits.h>
+#include <stdlib.h>
+#include "stm32f411xe.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -31,12 +33,37 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+/* --- Hardware Constants --- */
+#define LED_PIN               13
+#define BUTTON_PIN            0
 
+/* --- Register Architecture Constants --- */
+#define BITS_PER_PIN_2        2
+#define FIELD_MASK_2BIT       3U
+#define BSRR_RESET_OFFSET     16
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
+/* --- GPIO Configuration Macros --- */
+#define GPIO_SET_MODE(PORT, PIN, MODE) \
+	do { \
+			(PORT)->MODER &= ~(FIELD_MASK_2BIT << ((PIN) * BITS_PER_PIN_2)); \
+			(PORT)->MODER |=  ((MODE) << ((PIN) * BITS_PER_PIN_2)); \
+	} while(0)
 
+/* Clears the 2-bit field and sets the pull-up/down config */
+#define GPIO_SET_PUPDR(PORT, PIN, TYPE) \
+	do { \
+			(PORT)->PUPDR &= ~(FIELD_MASK_2BIT << ((PIN) * BITS_PER_PIN_2)); \
+			(PORT)->PUPDR |=  ((TYPE) << ((PIN) * BITS_PER_PIN_2)); \
+	} while(0)
+
+/* --- GPIO Actions --- */
+#define LED_ON(PORT, PIN)     ((PORT)->BSRR = (1U << ((PIN) + BSRR_RESET_OFFSET)))
+#define LED_OFF(PORT, PIN)    ((PORT)->BSRR = (1U << (PIN)))
+#define IS_LED_ON(PORT, PIN)  (!((PORT)->ODR & (1U << (PIN))))
+#define GET_INPUT(PORT, PIN)  (!((PORT)->IDR & (1U << (PIN)))) // Returns true if LOW (pressed)
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -87,16 +114,39 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  /* Enable Clocks */
+  RCC->AHB1ENR |= (RCC_AHB1ENR_GPIOAEN | RCC_AHB1ENR_GPIOCEN);
 
+  /* Configure Hardware */
+  GPIO_SET_MODE(GPIOC, LED_PIN, GPIO_MODE_OUTPUT_PP);
+  GPIO_SET_MODE(GPIOA, BUTTON_PIN, GPIO_MODE_INPUT);
+  GPIO_SET_PUPDR(GPIOA, BUTTON_PIN, GPIO_PULLUP);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  long rate = 500;
+  uint64_t counter = 0;
+
   while (1)
   {
+  	++counter;
+
+  	if (GET_INPUT(GPIOA, BUTTON_PIN)) {
+  		if (rate == 500)
+  			srandom(HAL_GetTick());
+  		rate = (long) (1000.0f * random() / LONG_MAX);
+		}
+  	if (counter % rate == 0) {
+			if (IS_LED_ON(GPIOC, LED_PIN))
+				LED_OFF(GPIOC, LED_PIN);
+			else
+				LED_ON(GPIOC, LED_PIN);
+  	}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+  	HAL_Delay(1);
   }
   /* USER CODE END 3 */
 }
@@ -151,7 +201,7 @@ static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* USER CODE BEGIN MX_GPIO_Init_1 */
-
+  return;
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
