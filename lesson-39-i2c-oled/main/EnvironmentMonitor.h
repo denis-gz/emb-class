@@ -14,12 +14,10 @@ public:
     ~EnvironmentMonitor();
 
 private:
-    static bool on_alarm(gptimer_handle_t timer, const gptimer_alarm_event_data_t* edata, void* user_ctx);
-
     bmp280_t  m_bmp280 = {};
     i2c_dev_t m_ds1307 = {};
     SSD1306_t m_oled = {};
-    TaskHandle_t m_task = nullptr;
+    TaskHandle_t m_task = {};
 
     volatile bool m_stop_task = false;
 

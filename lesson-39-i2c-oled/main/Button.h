@@ -22,7 +22,7 @@ private:
     std::atomic_int m_level;
 
     gpio_num_t m_pin = GPIO_NUM_NC;
-    gpio_glitch_filter_handle_t gl_handle = nullptr;
+    gpio_glitch_filter_handle_t gl_handle = {};
 
     callback_t m_callback;
 

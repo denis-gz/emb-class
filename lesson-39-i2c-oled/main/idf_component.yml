@@ -19,3 +19,6 @@ dependencies:
   nopnop2002/ssd1306:
     path: components/ssd1306/
     git: https://github.com/nopnop2002/esp-idf-ssd1306.git
+  nopnop2002/at24c:
+    path: components/at24c/
+    git: https://github.com/nopnop2002/esp-idf-24c.git

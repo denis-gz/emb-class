@@ -52,8 +52,8 @@ private:
     int m_animation_period = 1;             // In timer units (100 ms)
     int m_animation_duration = INT32_MAX;   // In timer units (100 ms)
 
-    gptimer_handle_t m_switch_timer = nullptr;
-    gptimer_handle_t m_shift_timer = nullptr;
+    gptimer_handle_t m_switch_timer = {};
+    gptimer_handle_t m_shift_timer = {};
     uint64_t m_shifter_counter = 0;
 
     std::vector<uint8_t> m_segs_buffer;

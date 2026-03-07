@@ -94,7 +94,15 @@ dependencies:
   idf:
     source:
       type: idf
-    version: 5.5.2
+    version: 5.5.3
+  nopnop2002/at24c:
+    component_hash: ddcba9fa690b52bf7d81ab8bc490214b975c8c02095fc05b63b107a981733674
+    dependencies: []
+    source:
+      git: https://github.com/nopnop2002/esp-idf-24c.git
+      path: components/at24c/
+      type: git
+    version: 0a53b32bd470b6fd780bd8f0e26ae34307d1e778
   nopnop2002/ssd1306:
     component_hash: 189175460628deaf7e0a81b43f1e08d6cc54260a2ec51bf0d6c04c5dd5dc4167
     dependencies: []
@@ -107,7 +115,8 @@ direct_dependencies:
 - esp-idf-lib/bmp280
 - esp-idf-lib/ds1307
 - idf
+- nopnop2002/at24c
 - nopnop2002/ssd1306
-manifest_hash: 779e7c23143c7b43511e9020d31dcfb2259fe64609dc70937e9e8d97b8f8fe47
+manifest_hash: 3b07afa55e59036aa751943fe73b1ce0e0e09303b0e751d000d76413fa5e2e1c
 target: esp32s3
 version: 2.0.0

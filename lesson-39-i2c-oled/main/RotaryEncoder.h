@@ -18,8 +18,8 @@ private:
     static bool pcnt_watch_callback(pcnt_unit_handle_t unit, const pcnt_watch_event_data_t* edata, void* user_ctx);
 
     int m_counter = 0;
-    pcnt_unit_handle_t m_unit = nullptr;
-    pcnt_channel_handle_t m_chan = nullptr;
+    pcnt_unit_handle_t m_unit = {};
+    pcnt_channel_handle_t m_chan = {};
     std::function<void(bool)> m_callback;
 };
 
