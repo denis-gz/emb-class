@@ -1,6 +1,8 @@
-idf_component_register(SRCS "app_main.cpp"
-                       REQUIRES "esp_driver_gpio esp_driver_pcnt esp_driver_gptimer esp_timer esp_driver_i2c esp_driver_spi"
-                       INCLUDE_DIRS ".")
+idf_component_register(
+  SRCS "app_main.cpp"
+  REQUIRES "esp_driver_gpio esp_driver_pcnt esp_driver_gptimer esp_timer esp_driver_i2c esp_driver_spi esp_event"
+  INCLUDE_DIRS "."
+)
 
 file(GLOB SOURCE_FILES "*.cpp")
 file(GLOB INCLUDE_FILES "*.h")

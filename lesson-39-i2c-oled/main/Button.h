@@ -5,6 +5,7 @@
 
 #include <atomic>
 #include <functional>
+#include <mutex>
 
 class Button
 {
@@ -15,6 +16,8 @@ public:
     ~Button();
 
 private:
+    static std::once_flag s_isr_service_flag;
+
     std::atomic_int m_counter;
     std::atomic_int64_t m_sample_time;
     std::atomic_int64_t m_depress_time;

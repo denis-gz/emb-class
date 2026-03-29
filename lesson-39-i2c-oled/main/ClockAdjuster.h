@@ -7,6 +7,10 @@
 #include <functional>
 #include <ctime>
 
+#include <esp_event.h>
+
+ESP_EVENT_DECLARE_BASE(EVENT_CLOCK_ADJUSTER);
+
 class ClockAdjuster
 {
     enum state_t {
@@ -23,22 +27,27 @@ public:
     using callback_t = std::function<void(tm*)>;
 
     ClockAdjuster(callback_t get_callback, callback_t set_callback);
+    ~ClockAdjuster();
 
     S7_Display* Display() { return &m_display; };
 
 private:
     state_t m_state = {};
     tm m_time_info = {};
+    int m_last_day = 0;
     S7_Display m_display;
     callback_t m_get_callback;
     callback_t m_set_callback;
 
     RotaryEncoder m_encoder;
     Button m_encoder_key;
+    esp_event_loop_handle_t m_loop = nullptr;
 
     static void get_day_of_week(int wday, char* result, size_t len);
+    int get_last_day_of_month();
 
     void on_rotate(bool increase);
     void on_click();
+    void on_event(esp_event_base_t event_base, int32_t event_id, void* event_data);
     void update_display();
 };

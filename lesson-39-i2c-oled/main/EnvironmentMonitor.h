@@ -21,7 +21,7 @@ private:
 
     volatile bool m_stop_task = false;
 
-    std::tm m_time_info = {};
+    std::tm m_local_time = {};
     std::tm m_new_time = {};
 
     ClockAdjuster m_clock_adjuster;
@@ -32,4 +32,6 @@ private:
     void setup_task();
 
     void update_task();
+    bool set_system_time(tm* rtc_time = nullptr);
+    bool get_local_time();
 };

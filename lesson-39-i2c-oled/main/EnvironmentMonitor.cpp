@@ -7,8 +7,8 @@
 
 EnvironmentMonitor::EnvironmentMonitor()
     : m_clock_adjuster(
-        [this] (tm* info) { *info = m_time_info; },     // Get time callback
-        [this] (tm* info) { m_new_time = *info; })      // Set time callback
+        [this] (tm* info) { *info = m_local_time; },     // Get time callback
+        [this] (tm* info) { m_new_time = *info; })       // Set time callback
 {
     ESP_ERROR_CHECK(i2cdev_init());
 
@@ -42,7 +42,9 @@ void EnvironmentMonitor::setup_ds1307()
         static_cast<gpio_num_t>(CONFIG_I2CDEV_DEFAULT_SDA_PIN),
         static_cast<gpio_num_t>(CONFIG_I2CDEV_DEFAULT_SCL_PIN)));
 
-    ESP_ERROR_CHECK(ds1307_get_time(&m_ds1307, &m_time_info));
+    tm rtc_time;
+    ESP_ERROR_CHECK(ds1307_get_time(&m_ds1307, &rtc_time));
+    set_system_time(&rtc_time);
 }
 
 void EnvironmentMonitor::setup_ssd1306()
@@ -62,16 +64,8 @@ void EnvironmentMonitor::setup_ssd1306()
 
 void EnvironmentMonitor::setup_task()
 {
-    union {
-        void (EnvironmentMonitor::*member)();
-        TaskFunction_t task;
-    }
-    handler = {
-        .member = &EnvironmentMonitor::update_task
-    };
-
     xTaskCreate(
-        handler.task,           // The function that implements the task
+        member_cast<TaskFunction_t>(&EnvironmentMonitor::update_task),
         "update_task",          // A descriptive name for debugging
         4096,                   // Stack size (4096 bytes is very safe for I2C and OLED strings)
         this,                   // Parameter passed to the task (pointer to object)
@@ -87,17 +81,19 @@ void EnvironmentMonitor::update_task()
 
     while (!m_stop_task) {
         if (m_new_time.tm_year) {
-            ds1307_set_time(&m_ds1307, &m_new_time);
+            m_local_time = m_new_time;
+            set_system_time();
             memset(&m_new_time, 0, sizeof(m_new_time));
         }
-        if (ds1307_get_time(&m_ds1307, &m_time_info) == ESP_OK) {
+
+        if (get_local_time()) {
             char line_0[16] = {};
-            strftime(line_0, sizeof(line_0), "%H:%M:%S", &m_time_info);
-            ssd1306_display_text(&m_oled, 0, line_0, 14, false);
+            strftime(line_0, sizeof(line_0), "%H:%M:%S", &m_local_time);
+            ssd1306_display_text(&m_oled, 0, line_0, 16, false);
 
             char line_1[16] = {};
-            strftime(line_1, sizeof(line_1), "%a %d.%m.%Y", &m_time_info);
-            ssd1306_display_text(&m_oled, 1, line_1, 14, false);
+            strftime(line_1, sizeof(line_1), "%a %d.%m.%Y", &m_local_time);
+            ssd1306_display_text(&m_oled, 1, line_1, 16, false);
         }
 
         ssd1306_clear_line(&m_oled, 2, false);
@@ -135,4 +131,52 @@ void EnvironmentMonitor::update_task()
     i2cdev_done();
 
     vTaskDelete(nullptr);
+}
+
+bool EnvironmentMonitor::set_system_time(tm* rtc_time)
+{
+    char* current_tz = nullptr;
+    time_t utc_ts = 0;
+
+    if (rtc_time) {
+        current_tz = getenv("TZ");
+        setenv("TZ", "GMT0", 1);
+        tzset();
+        utc_ts = std::mktime(rtc_time);
+    }
+    else {
+        if (m_local_time.tm_year > 1900)
+            m_local_time.tm_year -= 1900;
+        m_local_time.tm_isdst = -1;
+        utc_ts = std::mktime(&m_local_time);
+    }
+    timeval tv = { .tv_sec = utc_ts };
+    settimeofday(&tv, nullptr);
+
+    if (rtc_time) {
+        // Restore actual TZ value
+        if (current_tz) {
+            setenv("TZ", current_tz, 1);
+            tzset();
+        }
+        return true;
+    }
+    else {
+        // Always maintain system time in UTC timezone
+        if (tm* utc_tm = std::gmtime(&utc_ts)) {
+            ds1307_set_time(&m_ds1307, utc_tm);
+            return true;
+        }
+        return false;
+    }
+}
+
+bool EnvironmentMonitor::get_local_time()
+{
+    time_t utc_now = std::time(nullptr);
+    if (tm* local = std::localtime(&utc_now)) {
+        m_local_time = *local;
+        return true;
+    }
+    return false;
 }

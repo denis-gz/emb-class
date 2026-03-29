@@ -5,11 +5,23 @@
 #include <esp_timer.h>
 #include <esp_log.h>
 
+#include "common.h"
+
+std::once_flag Button::s_isr_service_flag;
+
 // How much time a pin should have the HIGH level to clear button depressed state
 constexpr const int64_t HIGH_STATE_GUARD_INTERVAL_US = 10 * 1000LL;    // 10 ms
 
 Button::Button(int pin, callback_t callback)
 {
+    std::call_once(s_isr_service_flag, []() {
+        esp_err_t err = gpio_install_isr_service(ESP_INTR_FLAG_IRAM);
+        // Ignore the error if another module already installed it!
+        if (err != ESP_OK && err != ESP_ERR_INVALID_STATE) {
+            ESP_ERROR_CHECK(err);
+        }
+    });
+
     gpio_config_t gpio_conf = {
         .pin_bit_mask = 1ULL << pin,
         .mode         = GPIO_MODE_INPUT,
@@ -18,19 +30,9 @@ Button::Button(int pin, callback_t callback)
         .intr_type    = GPIO_INTR_ANYEDGE,
     };
 
-    // Convert pointer-to-member to a C-function with an arg (gpio_isr_t)
-    union {
-        void (Button::*member)();
-        gpio_isr_t gpio_isr;
-    }
-    handler = {
-        .member = &Button::handler
-    };
-
     m_pin = static_cast<gpio_num_t>(pin);
     ESP_ERROR_CHECK(gpio_config(&gpio_conf));
-    ESP_ERROR_CHECK(gpio_install_isr_service(ESP_INTR_FLAG_IRAM));
-    ESP_ERROR_CHECK(gpio_isr_handler_add(m_pin, handler.gpio_isr, this));
+    ESP_ERROR_CHECK(gpio_isr_handler_add(m_pin, member_cast<gpio_isr_t>(&Button::handler), this));
     ESP_ERROR_CHECK(gpio_intr_enable(m_pin));
     m_callback = callback;
 
