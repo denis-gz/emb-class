@@ -1,6 +1,18 @@
 idf_component_register(
   SRCS "app_main.cpp"
-  REQUIRES "esp_driver_gpio esp_driver_pcnt esp_driver_gptimer esp_timer esp_driver_i2c esp_driver_spi esp_event"
+  REQUIRES
+    esp_driver_gpio
+    esp_driver_pcnt
+    esp_driver_gptimer
+    esp_driver_i2c
+    esp_driver_spi
+    esp_timer
+    esp_event
+    esp_netif
+    esp_wifi
+    esp_http_client
+    nvs_flash
+    mqtt
   INCLUDE_DIRS "."
 )
 
