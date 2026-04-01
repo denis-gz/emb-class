@@ -72,7 +72,7 @@ void ClockAdjuster::get_day_of_week(int wday, char* result, size_t len)
 int ClockAdjuster::get_last_day_of_month()
 {
     // Here, we take the Unix-time of first day of next month, then subtract 1 second,
-    // and thus receive the last day of previous month, which is of out interest.
+    // and thus receive the last day of previous month, which is of our interest.
     tm t = {};
     t.tm_mday = 1,
     t.tm_mon = m_time_info.tm_mon + 1;

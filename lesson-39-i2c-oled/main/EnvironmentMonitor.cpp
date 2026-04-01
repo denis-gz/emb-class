@@ -45,6 +45,7 @@ EnvironmentMonitor::~EnvironmentMonitor()
     esp_wifi_deinit();
     esp_netif_destroy_default_wifi(m_netif);
     esp_netif_deinit();
+    vEventGroupDelete(m_wifi_event_group);
 }
 
 void EnvironmentMonitor::setup_bmp280()
@@ -167,41 +168,53 @@ void EnvironmentMonitor::update_task()
         if (++counter % 10 != 0)
             continue;
 
+        float temp = NAN;
+        float pres = NAN;
+        float humi = NAN;
+
+        if (bmp280_read_float(&m_bmp280, &temp, &pres, &humi) == ESP_OK) {
+            if (!m_remote_mode) {
+                snprintf(lines[0], sizeof(lines[0]), "T: %.1f C", temp);
+                ssd1306_display_text(&m_oled, 3, lines[0], 16, false);
+
+                snprintf(lines[1], sizeof(lines[1]), "P: %4u hPa", (uint) (pres / 100.f));
+                ssd1306_display_text(&m_oled, 4, lines[1], 16, false);
+
+                snprintf(lines[2], sizeof(lines[2]), "H: %.1f %%", humi);
+                ssd1306_display_text(&m_oled, 5, lines[2], 16, false);
+            }
+        }
+        else {
+            if (!m_remote_mode) {
+                ssd1306_clear_line(&m_oled, 3, false);
+                ssd1306_clear_line(&m_oled, 4, false);
+                ssd1306_clear_line(&m_oled, 5, false);
+            }
+            log_to_screen(7, "BME280 error");
+        }
+
         auto uxBits = xEventGroupWaitBits(m_wifi_event_group, WIFI_CONNECTED_BIT | MQTT_CONNECTED_BIT, pdFALSE, pdFALSE, 0);
         if (uxBits & WIFI_CONNECTED_BIT) {
-            float temp = NAN;
-            float pres = NAN;
-            float humi = NAN;
-
-            if (bmp280_read_float(&m_bmp280, &temp, &pres, &humi) == ESP_OK) {
-                if (!m_remote_mode) {
-                    snprintf(lines[0], sizeof(lines[0]), "T: %.1f C", temp);
-                    ssd1306_display_text(&m_oled, 3, lines[0], 16, false);
-
-                    snprintf(lines[1], sizeof(lines[1]), "P: %4u hPa", (uint) (pres / 100.f));
-                    ssd1306_display_text(&m_oled, 4, lines[1], 16, false);
-
-                    snprintf(lines[2], sizeof(lines[2]), "H: %.1f %%", humi);
-                    ssd1306_display_text(&m_oled, 5, lines[2], 16, false);
+            if (uxBits & MQTT_CONNECTED_BIT) {
+                if (!std::isnan(temp)) {
+                    snprintf(lines[0], sizeof(lines[0]), "%.1f", temp);
+                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/temp", lines[0], 0, 0, 0);
+                }
+                if (!std::isnan(pres)) {
+                    snprintf(lines[1], sizeof(lines[1]), "%u", (uint) (pres / 100.f));
+                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/pres", lines[1], 0, 0, 0);
+                }
+                if (!std::isnan(humi)) {
+                    snprintf(lines[2], sizeof(lines[2]), "%.1f", humi);
+                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/humi", lines[2], 0, 0, 0);
                 }
             }
             else {
-                if (!m_remote_mode) {
-                    ssd1306_clear_line(&m_oled, 3, false);
-                    ssd1306_clear_line(&m_oled, 4, false);
-                    ssd1306_clear_line(&m_oled, 5, false);
-                }
-                log_to_screen(7, "BME280 error");
+                log_to_screen(7, "MQTT not ready");
             }
-
-            if (uxBits & MQTT_CONNECTED_BIT) {
-                if (!std::isnan(temp))
-                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/temp", lines[0], 0, 0, 0);
-                if (!std::isnan(pres))
-                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/pres", lines[1], 0, 0, 0);
-                if (!std::isnan(humi))
-                    esp_mqtt_client_publish(m_mqtt_handle, MQTT_PUB_TOPIC "/humi", lines[2], 0, 0, 0);
-            }
+        }
+        else {
+            log_to_screen(7, "Wi-Fi disconnect");
         }
     }
 
@@ -233,12 +246,14 @@ void EnvironmentMonitor::post_event(const char* topic, size_t topic_len, const c
     if (xQueueSend(m_queue, &qmsg, 0) != pdPASS) {
         ESP_LOGI(TAG, "Warning: Display queue is full, dropping MQTT message!\n");
     }
+    else {
+        ESP_LOGI(TAG, "MQTT event: Topic: '%s', Data: '%s'", qmsg.topic, qmsg.data);
+    }
 }
 
 void EnvironmentMonitor::log_to_screen(int line, const char* fmt, ...)
 {
-    char buf[256];
-    memset(buf, 0x20, sizeof(buf));
+    char buf[256] = {};
 
     va_list args;
     va_start(args, fmt);
@@ -251,11 +266,9 @@ void EnvironmentMonitor::log_to_screen(int line, const char* fmt, ...)
     for (int i = 0; i + line < 8; ++i) {
         ssd1306_display_text(&m_oled, i + line, buf + i * 16, 16, false);
     }
-
-    ESP_LOGI(TAG, "%s", buf);
 }
 
-bool EnvironmentMonitor::set_system_time(tm* rtc_time)
+bool EnvironmentMonitor::set_system_time(tm* rtc_time /* = nullptr */)
 {
     char* current_tz = nullptr;
     time_t utc_ts = 0;
@@ -309,17 +322,20 @@ void EnvironmentMonitor::on_wifi_event(esp_event_base_t event_base, int32_t even
         esp_wifi_connect();
     }
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED) {
-        xEventGroupClearBits(m_wifi_event_group, WIFI_CONNECTED_BIT);
+        xEventGroupClearBits(m_wifi_event_group, WIFI_CONNECTED_BIT | MQTT_CONNECTED_BIT);
         esp_wifi_connect();
-        log_to_screen(7, "Connecting Wi-Fi");
+        post_log("Wi-Fi connecting");
     }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         xEventGroupSetBits(m_wifi_event_group, WIFI_CONNECTED_BIT);
-        log_to_screen(7, "Wi-Fi connected");
+        post_log("Wi-Fi ready");
 
         auto uxBits = xEventGroupWaitBits(m_wifi_event_group, WIFI_CONNECTED_BIT, pdFALSE, pdFALSE, 0);
         if (!(uxBits & MQTT_STARTED_BIT)) {
             mqtt_start();
+        }
+        else {
+            esp_mqtt_client_reconnect(m_mqtt_handle);
         }
     }
 }
@@ -388,13 +404,13 @@ void EnvironmentMonitor::on_mqtt_event(esp_event_base_t event_base, int32_t even
 
     switch (event_id) {
         case MQTT_EVENT_CONNECTED:
-            post_log("MQTT connected");
             esp_mqtt_client_subscribe(m_mqtt_handle, MQTT_SUB_TOPIC, 0);
             xEventGroupSetBits(m_wifi_event_group, MQTT_CONNECTED_BIT);
+            post_log("MQTT ready");
             break;
         case MQTT_EVENT_DISCONNECTED:
-            post_log("MQTT disconnect");
             xEventGroupClearBits(m_wifi_event_group, MQTT_CONNECTED_BIT);
+            post_log("MQTT disconnect");
             break;
         case MQTT_EVENT_DATA:
             post_event(event->topic, event->topic_len, event->data, event->data_len);
